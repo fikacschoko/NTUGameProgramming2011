@@ -1,6 +1,8 @@
 #include "TheFlyWin32.h"
 
-void actorChangePose( ACTORid , ACTIONid );
+bool actorChangePose( ACTORid , ACTIONid );
+
+//bool beenHit( ACTORid attacker , ACTORid defender, OurFrame frame );
 
 float twoObjectDis( OBJECTid , OBJECTid );
 
