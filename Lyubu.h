@@ -19,16 +19,16 @@ class Lyubu : public OurActor{
 		//呂布有的動作
 
 		void dealFlag();
-		void dealKey();
 	public:
 		FnActor actor;
 
 		OurAction *ourRunAction;
+		OurAction *ourAttack1Action;
 		float pos_begin[3];
 		float MOVE_SPEED, MOVE_ANGLE;
 
 		Lyubu( WORLDid , SCENEid );
-		void movement(Direction);
+		void dealKey();
 		void Rotate(int degree, float cameraPos[]);
 };
 #endif

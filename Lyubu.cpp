@@ -29,7 +29,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	//呂布特有動作
 	FnActor actor;
 	actor.Object( aID );
-
+	//IDLE
 	ourIdleAction = new OurAction();
 	ourIdleAction->actID = actor.GetBodyAction(NULL, "Idle");
 	ourIdleAction->frames_num = 0;
@@ -38,38 +38,34 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourIdleAction->type = ACTION_IDLE;
 
 	current_OurAction = ourIdleAction;
-
+	//RUN
 	ourRunAction = new OurAction();
 	ourRunAction->actID = actor.GetBodyAction(NULL, "Run");
 	ourRunAction->frames_num = 0;
 	ourRunAction->play_speed = 1;
 	ourRunAction->priority = 0;
 	ourRunAction->type = ACTION_WALK;
+	//ATTACKS
+	ourAttack1Action = new OurAction();
+	ourAttack1Action->actID = actor.GetBodyAction(NULL, "NormalAttack1");
+	ourAttack1Action->frames_num = 0;
+	ourAttack1Action->play_speed = 1;
+	ourAttack1Action->priority = 5;
+	ourAttack1Action->type = ACTION_ATTACK;
 
 	actor.MakeCurrentAction(0, NULL, ourIdleAction->actID);
 }
-
-void Lyubu::movement(Direction direction)
+void Lyubu::dealKey()
 {
-	if (direction == FORWARD) {
-		int result = actor.MoveForward( MOVE_SPEED, TRUE, FALSE, 0.0f, TRUE);
-		
-		::actorChangePose( aID, ourRunAction->actID );
+	static bool Zpressed=false;
+	if (FyCheckHotKeyStatus(FY_Z) ) {
+		if(!Zpressed)
+			sendAction(ourAttack1Action);
+		Zpressed=true;
 	}
-	else if(direction == LEFT){	
-		::actorChangePose( aID, ourRunAction->actID );
-		actor.TurnRight(-90);
-	}
-	else if (direction == RIGHT){
-		::actorChangePose( aID, ourRunAction->actID );
-		actor.TurnRight(90);
-	}
-	else if (direction == BACK) {
-		int result = actor.MoveForward( -MOVE_SPEED, TRUE, FALSE, 0.0f, TRUE);
-		::actorChangePose( aID, ourRunAction->actID );
-	}
-	else{
-		::actorChangePose( aID, ourIdleAction->actID );
+	else
+	{
+		Zpressed = false;
 	}
 }
 void Lyubu::Rotate(int degree, float cameraPos[])

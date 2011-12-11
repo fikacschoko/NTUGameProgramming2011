@@ -1,6 +1,6 @@
 #include "function.h"
 #include "TheFlyWin32.h"
-
+#define M_PI 3.14159265
 
 bool actorChangePose( ACTORid man, ACTIONid act )
 {
@@ -15,7 +15,7 @@ bool actorChangePose( ACTORid man, ACTIONid act )
 
 bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame ){
 	FnActor attacker, defender;
-	float attPos[3], defPos[3];
+	float attPos[3], defPos[3], udir[3];
 	float attDir[3], defDir[3];
 	float bytan, bycos, bysin;
 	float dis = twoObjectDis( attacker.GetBaseObject(), defender.GetBaseObject() );
@@ -26,8 +26,8 @@ bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame ){
 	attacker.GetWorldPosition( attPos );
 	defender.GetWorldPosition( defPos );
 
-	attacker.GetWorldDirection( attDir );
-	defender.GetWorldDirection( defDir );
+	attacker.GetWorldDirection( attDir , udir);
+	defender.GetWorldDirection( defDir , udir);
 	
 	//count angle
 	bytan = atan( (attDir[1]-defDir[1])/(attDir[0]-defDir[0]) ) * M_PI/180;

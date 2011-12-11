@@ -3,13 +3,14 @@
 #include "TheFlyWin32.h"
 
 enum Action_type{ACTION_IDLE, ACTION_WALK, ACTION_DAMAGED, ACTION_ATTACK};
-struct Frame{
+struct OurFrame{
+	float frameNO;
 	float start_angle;
 	float valid_angle;
 	float valid_dis;
 	int damage_pt;
-	bool combo_able;
 };
+
 class OurAction{
 public:
 	OurAction();
@@ -18,11 +19,13 @@ public:
 	int priority;
 	float play_speed;
 	float frames_num;
+	int defense_pt;
 	Action_type type;
 };
 class AttackAction : public OurAction{
-protected:
-	int defense_pt;
-	Frame frame;
+public:
+	int numOfKeyFrames;
+	float combo_able_frame_start, combo_able_frame_end;
+	OurFrame **keyFrames;
 };
 #endif

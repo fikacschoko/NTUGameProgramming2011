@@ -14,7 +14,8 @@ public:
 	void ourPlayAction();
 	bool sendAction(OurAction*);
 	OurAction* getCurrentAction();
-	
+	OurFrame* getKeyFrame();
+	float getCurrentFrame();
 	void damaged(int attack_pt);
 };
 #endif
