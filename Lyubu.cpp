@@ -1,4 +1,4 @@
-#include "lyubu.h"
+#include "Lyubu.h"
 #include "function.h"
 
 extern float debug[4];
@@ -26,9 +26,27 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	aID = scene.LoadActor("Lyubu");
 	actor.Object(aID);
 
-	waiting_pose = actor.GetBodyAction(NULL, "Idle");
-	running_pose = actor.GetBodyAction(NULL, "Run");
-	actor.MakeCurrentAction(0, NULL, waiting_pose);
+	//呂布特有動作
+	FnActor actor;
+	actor.Object( aID );
+
+	ourIdleAction = new OurAction();
+	ourIdleAction->actID = actor.GetBodyAction(NULL, "Idle");
+	ourIdleAction->frames_num = 0;
+	ourIdleAction->play_speed = 1;
+	ourIdleAction->priority = 0;
+	ourIdleAction->type = ACTION_IDLE;
+
+	current_OurAction = ourIdleAction;
+
+	ourRunAction = new OurAction();
+	ourRunAction->actID = actor.GetBodyAction(NULL, "Run");
+	ourRunAction->frames_num = 0;
+	ourRunAction->play_speed = 1;
+	ourRunAction->priority = 0;
+	ourRunAction->type = ACTION_WALK;
+
+	actor.MakeCurrentAction(0, NULL, ourIdleAction->actID);
 }
 
 void Lyubu::movement(Direction direction)
@@ -36,22 +54,22 @@ void Lyubu::movement(Direction direction)
 	if (direction == FORWARD) {
 		int result = actor.MoveForward( MOVE_SPEED, TRUE, FALSE, 0.0f, TRUE);
 		
-		::actorChangePose( aID, running_pose );
+		::actorChangePose( aID, ourRunAction->actID );
 	}
 	else if(direction == LEFT){	
-		::actorChangePose( aID, running_pose );
+		::actorChangePose( aID, ourRunAction->actID );
 		actor.TurnRight(-90);
 	}
 	else if (direction == RIGHT){
-		::actorChangePose( aID, running_pose );
+		::actorChangePose( aID, ourRunAction->actID );
 		actor.TurnRight(90);
 	}
 	else if (direction == BACK) {
 		int result = actor.MoveForward( -MOVE_SPEED, TRUE, FALSE, 0.0f, TRUE);
-		::actorChangePose( aID, running_pose );
+		::actorChangePose( aID, ourRunAction->actID );
 	}
 	else{
-		::actorChangePose( aID, waiting_pose );
+		::actorChangePose( aID, ourIdleAction->actID );
 	}
 }
 void Lyubu::Rotate(int degree, float cameraPos[])

@@ -1,10 +1,11 @@
 #include "OurAction.h"
 #include "OurActor.h"
+#include "function.h"
 int current_frame;
-OurAction* ourIdleAction;
-OurAction* current_OurAction;
-
 //OurActControl
+OurActor::OurActor()
+{
+}
 void OurActor::ourPlayAction()
 {
 	FnActor actor;
@@ -12,8 +13,8 @@ void OurActor::ourPlayAction()
 	
 	::actorChangePose( aID, current_OurAction->actID );
 	//it's a loop action?
-	if( current_OurAction.type == ACTION_IDLE ||
-		current_OurAction.type == ACTION_WALK )
+	if( current_OurAction->type == ACTION_IDLE ||
+		current_OurAction->type == ACTION_WALK )
 	{
 		actor.Play(0, LOOP, current_OurAction->play_speed, false, true);
 	}
@@ -26,15 +27,15 @@ void OurActor::ourPlayAction()
 	}
 }
 
-bool sendAction( OutAction* action )
+bool OurActor::sendAction( OurAction* action )
 {
-	if( action->priority <= current_OurAction->priority )
+	if( action->priority < current_OurAction->priority )
 		return false;
 	current_OurAction = action;
 	return true;
 }
 
-OurAction* getCurrentAction()
+OurAction* OurActor::getCurrentAction()
 {
 	return current_OurAction;
 }

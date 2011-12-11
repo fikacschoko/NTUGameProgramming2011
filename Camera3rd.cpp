@@ -182,23 +182,26 @@ void Camera3rd::movement()
 	update(lyubu->aID);
 
 	if (FyCheckHotKeyStatus(FY_UP)) {
-		result = lyubu->actor.MoveForward( MOVE_SPEED, TRUE, FALSE, 0.0f, TRUE);
-		::actorChangePose( lyubu->aID, lyubu->running_pose );
-		fronter.GetWorldDirection( fdir, udir );
-		lyubu->actor.SetWorldDirection( fdir, udir );
+		if(lyubu->sendAction(lyubu->ourRunAction))
+		{
+			result = lyubu->actor.MoveForward( MOVE_SPEED, TRUE, FALSE, 0.0f, TRUE);
+			//::actorChangePose( lyubu->aID, lyubu->ourRunAction->actID );
+			fronter.GetWorldDirection( fdir, udir );
+			lyubu->actor.SetWorldDirection( fdir, udir );
 
-		if (result != BOUNDARY) {
-			if( disBtwActFro >= disBtwActFro_max )
-			{	
-				fronter.MoveForward(MOVE_SPEED, true, FALSE, 20);
-				if( disBtwFroCen < disBtwFroCen_std )
-					disBtwFroCen += MOVE_SPEED;
-			}
-			else
-			{
-				fronter.MoveForward(CAM_SPEED, true, FALSE, 20);
-				if( disBtwFroCen < disBtwFroCen_std )
-					disBtwFroCen += CAM_SPEED;
+			if (result != BOUNDARY) {
+				if( disBtwActFro >= disBtwActFro_max )
+				{	
+					fronter.MoveForward(MOVE_SPEED, true, FALSE, 20);
+					if( disBtwFroCen < disBtwFroCen_std )
+						disBtwFroCen += MOVE_SPEED;
+				}
+				else
+				{
+					fronter.MoveForward(CAM_SPEED, true, FALSE, 20);
+					if( disBtwFroCen < disBtwFroCen_std )
+						disBtwFroCen += CAM_SPEED;
+				}
 			}
 		}
 
@@ -206,119 +209,131 @@ void Camera3rd::movement()
 			disBtwCenHig-=10;
 	}
 	else if(FyCheckHotKeyStatus(FY_LEFT)){	
-		::actorChangePose( lyubu->aID, lyubu->running_pose );
-		float pos[3];
-		fronter.GetWorldDirection( fdir, udir );
-		lyubu->actor.SetWorldDirection( fdir, udir );
-		lyubu->actor.TurnRight(-90-ANGLE_SPEED);
-		lyubu->actor.GetWorldPosition(pos);
-		SetPosition( pos, lyubu->aID );
+		if(lyubu->sendAction(lyubu->ourRunAction))
+		{
+			//::actorChangePose( lyubu->aID, lyubu->ourRunAction->actID );
+			float pos[3];
+			fronter.GetWorldDirection( fdir, udir );
+			lyubu->actor.SetWorldDirection( fdir, udir );
+			lyubu->actor.TurnRight(-90-ANGLE_SPEED);
+			lyubu->actor.GetWorldPosition(pos);
+			SetPosition( pos, lyubu->aID );
 
-		lyubu->actor.MoveForward( ::twoObjectDis(lyubu->actor.GetBaseObject(),centerID)*PI/180 , TRUE);
-		fronter.TurnRight(-ANGLE_SPEED);
+			lyubu->actor.MoveForward( ::twoObjectDis(lyubu->actor.GetBaseObject(),centerID)*PI/180 , TRUE);
+			fronter.TurnRight(-ANGLE_SPEED);
+		}
 	}
 	else if (FyCheckHotKeyStatus(FY_RIGHT) ){
-		::actorChangePose( lyubu->aID, lyubu->running_pose );
-		float pos[3];
-		fronter.GetWorldDirection( fdir, udir );
-		lyubu->actor.SetWorldDirection( fdir, udir );
-		lyubu->actor.TurnRight(90+ANGLE_SPEED);
-		lyubu->actor.GetWorldPosition(pos);
-		SetPosition( pos, lyubu->aID );
+		if(lyubu->sendAction(lyubu->ourRunAction))
+		{
+			//::actorChangePose( lyubu->aID, lyubu->ourRunAction->actID );
+			float pos[3];
+			fronter.GetWorldDirection( fdir, udir );
+			lyubu->actor.SetWorldDirection( fdir, udir );
+			lyubu->actor.TurnRight(90+ANGLE_SPEED);
+			lyubu->actor.GetWorldPosition(pos);
+			SetPosition( pos, lyubu->aID );
 
-		lyubu->actor.MoveForward( ::twoObjectDis(lyubu->actor.GetBaseObject(),centerID)*PI/180 , TRUE);
-		fronter.TurnRight(ANGLE_SPEED);
+			lyubu->actor.MoveForward( ::twoObjectDis(lyubu->actor.GetBaseObject(),centerID)*PI/180 , TRUE);
+			fronter.TurnRight(ANGLE_SPEED);
+		}
 	}
 	else if (FyCheckHotKeyStatus(FY_DOWN)) {
-		::actorChangePose( lyubu->aID, lyubu->running_pose );
-
-		float c2pos[3];
-		fronter.GetWorldDirection( fdir, udir );
-		lyubu->actor.SetWorldDirection( fdir, udir );
-		lyubu->actor.TurnRight(180);
-
-		lyubu->actor.GetWorldPosition(c2pos);
-		float pos[3];
-		center.HitTest(c2pos, fdir, pos, FALSE);
-		if( ::posObjectDis( pos, centerID ) > MOVE_SPEED )
+		if(lyubu->sendAction(lyubu->ourRunAction))
 		{
-			result = lyubu->actor.MoveForward( MOVE_SPEED, TRUE, FALSE, 0.0f, TRUE);
-		}
-		
-		if (result != BOUNDARY) {
-			//hittest
-			FnObject cam;
-			cam.Object( cameraID );
-			cam.GetWorldDirection( fdir, udir );
-			fdir[0] *= -1;
-			fdir[1] *= -1;
-			fdir[2] *= 0;
-			//actor.GetWorldDirection( fdir, NULL );
-			cam.GetWorldPosition(c2pos);
-			c2pos[2]=40;
-			FnTerrain terrain;
-			terrain.Object(terrainID);
+			//::actorChangePose( lyubu->aID, lyubu->ourRunAction->actID );
+
+			float c2pos[3];
+			fronter.GetWorldDirection( fdir, udir );
+			lyubu->actor.SetWorldDirection( fdir, udir );
+			lyubu->actor.TurnRight(180);
+
+			lyubu->actor.GetWorldPosition(c2pos);
 			float pos[3];
-			if( terrain.HitTest(c2pos, fdir, pos, FALSE) ){
-				//QuitGame(gID, FY_ESCAPE, true);
-				if( ::posObjectDis( pos, centerID ) > 40 )
-				{
-					if( disBtwActFro <= disBtwActFro_min )
-					{	
-						fronter.MoveForward(-MOVE_SPEED, true, FALSE, 20);
-					}
-					else
+			center.HitTest(c2pos, fdir, pos, FALSE);
+			if( ::posObjectDis( pos, centerID ) > MOVE_SPEED )
+			{
+				result = lyubu->actor.MoveForward( MOVE_SPEED, TRUE, FALSE, 0.0f, TRUE);
+			}
+		
+			if (result != BOUNDARY) {
+				//hittest
+				FnObject cam;
+				cam.Object( cameraID );
+				cam.GetWorldDirection( fdir, udir );
+				fdir[0] *= -1;
+				fdir[1] *= -1;
+				fdir[2] *= 0;
+				//actor.GetWorldDirection( fdir, NULL );
+				cam.GetWorldPosition(c2pos);
+				c2pos[2]=40;
+				FnTerrain terrain;
+				terrain.Object(terrainID);
+				float pos[3];
+				if( terrain.HitTest(c2pos, fdir, pos, FALSE) ){
+					//QuitGame(gID, FY_ESCAPE, true);
+					if( ::posObjectDis( pos, centerID ) > 40 )
 					{
-						fronter.MoveForward(-CAM_SPEED, true, FALSE, 20);
+						if( disBtwActFro <= disBtwActFro_min )
+						{	
+							fronter.MoveForward(-MOVE_SPEED, true, FALSE, 20);
+						}
+						else
+						{
+							fronter.MoveForward(-CAM_SPEED, true, FALSE, 20);
+						}
+					}
+					else if(disBtwFroCen > disBtwFroCen_min )
+					{
+						if( disBtwActFro <= disBtwActFro_min )
+						{	
+							fronter.MoveForward(-MOVE_SPEED, true, FALSE, 20);
+							disBtwFroCen -= MOVE_SPEED;
+						}
+						else
+						{
+							fronter.MoveForward(-CAM_SPEED, true, FALSE, 20);
+							disBtwFroCen -= CAM_SPEED;
+						}
+						if( disBtwCenHig < disBtwCenHig_max )
+							disBtwCenHig+=10;
 					}
 				}
-				else if(disBtwFroCen > disBtwFroCen_min )
+				else
 				{
 					if( disBtwActFro <= disBtwActFro_min )
 					{	
 						fronter.MoveForward(-MOVE_SPEED, true, FALSE, 20);
-						disBtwFroCen -= MOVE_SPEED;
 					}
 					else
 					{
 						fronter.MoveForward(-CAM_SPEED, true, FALSE, 20);
-						disBtwFroCen -= CAM_SPEED;
 					}
-					if( disBtwCenHig < disBtwCenHig_max )
-						disBtwCenHig+=10;
+				
 				}
 			}
 			else
 			{
-				if( disBtwActFro <= disBtwActFro_min )
-				{	
-					fronter.MoveForward(-MOVE_SPEED, true, FALSE, 20);
-				}
-				else
-				{
-					fronter.MoveForward(-CAM_SPEED, true, FALSE, 20);
-				}
-				
+				if( disBtwCenHig < disBtwCenHig_max )
+					disBtwCenHig+=10;
 			}
-		}
-		else
-		{
-			if( disBtwCenHig < disBtwCenHig_max )
-				disBtwCenHig+=10;
 		}
 	}
 	else{  //IDLE  ,  no move
-		::actorChangePose( lyubu->aID, lyubu->waiting_pose );
+		if(lyubu->sendAction(lyubu->ourIdleAction))
+		{
+		//::actorChangePose( lyubu->aID, lyubu->ourIdleAction->actID );
 		
-		if( disBtwActFro > disBtwActFro_std + CAM_SPEED*3 )
-		{
-			fronter.MoveForward(CAM_SPEED*3, true, FALSE, 20);
-		}
-		else if(  disBtwActFro < disBtwActFro_std - CAM_SPEED*2 )
-		{
-			if( disBtwCenHig_std == disBtwCenHig )
+			if( disBtwActFro > disBtwActFro_std + CAM_SPEED*3 )
 			{
-				fronter.MoveForward(-CAM_SPEED*2, true, FALSE, 20);
+				fronter.MoveForward(CAM_SPEED*3, true, FALSE, 20);
+			}
+			else if(  disBtwActFro < disBtwActFro_std - CAM_SPEED*2 )
+			{
+				if( disBtwCenHig_std == disBtwCenHig )
+				{
+					fronter.MoveForward(-CAM_SPEED*2, true, FALSE, 20);
+				}
 			}
 		}
 	}

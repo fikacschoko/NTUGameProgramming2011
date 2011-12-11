@@ -1,3 +1,5 @@
+#ifndef _OURACTION_H_
+#define _OURACTION_H_
 #include "TheFlyWin32.h"
 
 enum Action_type{ACTION_IDLE, ACTION_WALK, ACTION_DAMAGED, ACTION_ATTACK};
@@ -9,17 +11,18 @@ struct Frame{
 	bool combo_able;
 };
 class OurAction{
-protected:
-	int priority;
+public:
+	OurAction();
+	OurAction(int priority,	float play_speed,	float frames_num,	ACTIONid actID,	Action_type type);
 	ACTIONid actID;
+	int priority;
 	float play_speed;
 	float frames_num;
 	Action_type type;
-public:
-	
 };
 class AttackAction : public OurAction{
 protected:
 	int defense_pt;
 	Frame frame;
 };
+#endif
