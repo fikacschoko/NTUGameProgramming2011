@@ -182,8 +182,8 @@ void Camera3rd::movement()
 	update(lyubu->aID);
 
 	if (FyCheckHotKeyStatus(FY_UP)) {
-		//if(lyubu->sendAction(lyubu->ourRunAction))
-		//{
+		if(lyubu->sendAction(lyubu->ourRunAction))
+		{
 			result = lyubu->actor.MoveForward( MOVE_SPEED, TRUE, FALSE, 0.0f, TRUE);
 			//::actorChangePose( lyubu->aID, lyubu->ourRunAction->actID );
 			fronter.GetWorldDirection( fdir, udir );
@@ -203,14 +203,14 @@ void Camera3rd::movement()
 						disBtwFroCen += CAM_SPEED;
 				}
 			}
-		//}
+		}
 
 		if( disBtwCenHig > disBtwCenHig_std )
 			disBtwCenHig-=10;
 	}
 	else if(FyCheckHotKeyStatus(FY_LEFT)){	
-		//if(lyubu->sendAction(lyubu->ourRunAction))
-		//{
+		if(lyubu->sendAction(lyubu->ourRunAction))
+		{
 			//::actorChangePose( lyubu->aID, lyubu->ourRunAction->actID );
 			float pos[3];
 			fronter.GetWorldDirection( fdir, udir );
@@ -221,11 +221,11 @@ void Camera3rd::movement()
 
 			lyubu->actor.MoveForward( ::twoObjectDis(lyubu->actor.GetBaseObject(),centerID)*PI/180 , TRUE);
 			fronter.TurnRight(-ANGLE_SPEED);
-		//}
+		}
 	}
 	else if (FyCheckHotKeyStatus(FY_RIGHT) ){
-		//if(lyubu->sendAction(lyubu->ourRunAction))
-		//{
+		if(lyubu->sendAction(lyubu->ourRunAction))
+		{
 			//::actorChangePose( lyubu->aID, lyubu->ourRunAction->actID );
 			float pos[3];
 			fronter.GetWorldDirection( fdir, udir );
@@ -236,11 +236,11 @@ void Camera3rd::movement()
 
 			lyubu->actor.MoveForward( ::twoObjectDis(lyubu->actor.GetBaseObject(),centerID)*PI/180 , TRUE);
 			fronter.TurnRight(ANGLE_SPEED);
-		//}
+		}
 	}
 	else if (FyCheckHotKeyStatus(FY_DOWN)) {
-		//if(lyubu->sendAction(lyubu->ourRunAction))
-		//{
+		if(lyubu->sendAction(lyubu->ourRunAction))
+		{
 			//::actorChangePose( lyubu->aID, lyubu->ourRunAction->actID );
 
 			float c2pos[3];
@@ -317,11 +317,11 @@ void Camera3rd::movement()
 				if( disBtwCenHig < disBtwCenHig_max )
 					disBtwCenHig+=10;
 			}
-		//}
+		}
 	}
 	else{  //IDLE  ,  no move
-		//if(lyubu->sendAction(lyubu->ourIdleAction))
-		//{
+		if(lyubu->sendAction(lyubu->ourIdleAction))
+		{
 		//::actorChangePose( lyubu->aID, lyubu->ourIdleAction->actID );
 		
 			if( disBtwActFro > disBtwActFro_std + CAM_SPEED*3 )
@@ -335,7 +335,7 @@ void Camera3rd::movement()
 					fronter.MoveForward(-CAM_SPEED*2, true, FALSE, 20);
 				}
 			}
-		//}
+		}
 	}
 
 	//just let camera look lyubu

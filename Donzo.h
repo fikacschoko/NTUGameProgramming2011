@@ -7,6 +7,6 @@
 class Donzo : public OurEnemyActor{
 	public:
 		Donzo();
-		void AI();
+		//void AI();
 };
 #endif

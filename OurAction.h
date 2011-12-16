@@ -4,7 +4,9 @@
 class Action_type
 {
 public:
-	Action_type();
+	Action_type()
+	{
+	}
 	Action_type(char *type)
 	{
 		this->value = type;
