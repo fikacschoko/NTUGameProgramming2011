@@ -1,0 +1,24 @@
+#include "TheFlyWin32.h"
+<<<<<<< HEAD
+#include "action.h"
+
+bool actorChangePose( ACTORid , ACTIONid );
+
+bool beenHit( ACTORid  , ACTORid , OurFrame );
+=======
+#include "OurActor.h"
+
+bool actorChangePose( ACTORid , ACTIONid );
+
+bool beenHit( ACTORid attacker , ACTORid defender, OurFrame frame );
+>>>>>>> 1728c83fdc5a71332f5a03fb8c5315605c030fac
+
+float twoObjectDis( OBJECTid , OBJECTid );
+
+float posObjectDis( float* , OBJECTid );
+
+float twoObjectAngle(  OBJECTid , OBJECTid );
+
+float twoObjectCross(  OBJECTid , OBJECTid );
+
+//float twoDirAngle( float* , float* );

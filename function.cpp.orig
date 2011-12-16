@@ -14,6 +14,14 @@ bool actorChangePose( ACTORid man, ACTIONid act )
 }
 
 bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame ){
+<<<<<<< HEAD
+=======
+	FnActor attacker, defender;
+	float attPos[3], defPos[3], udir[3];
+	float attDir[3], defDir[3];
+	float bytan, bycos, bysin;
+	float dis = twoObjectDis( attacker.GetBaseObject(), defender.GetBaseObject() );
+>>>>>>> 1728c83fdc5a71332f5a03fb8c5315605c030fac
 
 	FnActor attacker, defender;
 	attacker.Object( attackerID );
@@ -26,10 +34,15 @@ bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame ){
 	float cross = twoObjectCross( attacker.GetBaseObject(), defender.GetBaseObject() );
 	//float dot , absA, absB;
 
+<<<<<<< HEAD
 	/*attacker.GetWorldPosition( attPos );
 	defender.GetWorldPosition( defPos );
 	attacker.GetWorldDirection( attDir, eat );
 	defender.GetWorldDirection( defDir, eat );
+=======
+	attacker.GetWorldDirection( attDir , udir);
+	defender.GetWorldDirection( defDir , udir);
+>>>>>>> 1728c83fdc5a71332f5a03fb8c5315605c030fac
 	
 	att_def[0] = attPos[0]- defPos[0];
 	att_def[1] = attPos[1]- defPos[1];
@@ -98,6 +111,7 @@ float twoObjectCross(  OBJECTid centerID , OBJECTid targetID ){
 	center.GetWorldPosition( cenPos );
 	target.GetWorldPosition( tarPos );
 	center.GetWorldDirection( cenDir, eat );
+	target.GetWorldDirection( tarDir, eat );
 	
 	cen_tar[0] = tarPos[0]- cenPos[0];
 	cen_tar[1] = tarPos[1]- cenPos[1];
