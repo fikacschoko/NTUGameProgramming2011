@@ -41,7 +41,7 @@ public:
 	float play_speed;
 	float frames_num;
 	int defense_pt;
-	//Action_type *type;
+	bool isAttack;
 	Action_type type;
 	int numOfKeyFrames;
 	float combo_able_frame_start, combo_able_frame_end;
