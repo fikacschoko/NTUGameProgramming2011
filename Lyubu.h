@@ -30,8 +30,9 @@ class Lyubu : public OurActor{
 
 		void dealFlag();
 	public:
+		//the fly
 		FnActor actor;
-
+		//vars
 		OurAction *ourRunAction;
 		OurAction *ourAttack1Action;
 		OurAction *ourAttack2Action;
@@ -39,10 +40,11 @@ class Lyubu : public OurActor{
 		OurAction *ourAttack4Action;
 		float pos_begin[3];
 		float MOVE_SPEED, MOVE_ANGLE;
-
+		//method
 		Lyubu( WORLDid , SCENEid );
 		void damaged(int attack_pt, ACTORid aID);
 		void dealKey();
 		void Rotate(int degree, float cameraPos[]);
+		void damaged(int, ACTORid);
 };
 #endif
