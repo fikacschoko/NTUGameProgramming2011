@@ -13,9 +13,9 @@ public:
 	}
 	char *value;
 	static char*	ACTION_IDLE(){	return "GENERAL_IDLE"; }
-	static char*	ACTION_WALK(){	return "GENERAL_IDLE"; }
-	static char*	ACTION_DAMAGED(){	return "GENERAL_IDLE"; }
-	static char*	ACTION_ATTACK(){	return "GENERAL_IDLE"; }
+	static char*	ACTION_WALK(){	return "GENERAL_WALK"; }
+	static char*	ACTION_DAMAGED(){	return "GENERAL_DAMAGED"; }
+	static char*	ACTION_ATTACK(){	return "GENERAL_ATTACK"; }
 
 	bool operator==(const char *value)
 	{

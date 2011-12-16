@@ -57,13 +57,13 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	//ATTACKS
 	ourAttack1Action = new OurAction();
 	ourAttack1Action->actID = actor.GetBodyAction(NULL, "NormalAttack1");
-	ourAttack1Action->numOfKeyFrames = 1;
 	ourAttack1Action->frames_num = 0;
 	ourAttack1Action->play_speed = 0.8;
 	ourAttack1Action->priority = 5;
 	ourAttack1Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK1();
 	ourAttack1Action->combo_able_frame_start = 10;
 	ourAttack1Action->combo_able_frame_end = 20;
+	ourAttack1Action->numOfKeyFrames = 1;
 	ourAttack1Action->keyFrames = new OurFrame*[1];
 	ourAttack1Action->keyFrames[0] = new OurFrame;
 	ourAttack1Action->keyFrames[0]->frameNO = 7;

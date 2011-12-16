@@ -34,6 +34,13 @@ Donzo::Donzo( WORLDid gID, SCENEid sID )
 
 	current_OurAction = ourIdleAction;
 	actor.MakeCurrentAction(0, NULL, ourIdleAction->actID);
+	//DamageL
+	ourDamageLAction = new OurAction();
+	ourDamageLAction->actID = actor.GetBodyAction(NULL, "DamageL");
+	ourDamageLAction->frames_num = 0;
+	ourDamageLAction->play_speed = 1;
+	ourDamageLAction->priority = 100;
+	ourDamageLAction->type.value = DonzoAction::ACTION_DAMAGED();
 }
 
 void Donzo::AI()
@@ -43,5 +50,5 @@ void Donzo::AI()
 
 void Donzo::damaged( int attack_pt, ACTORid attacker )
 {
-
+	sendAction(ourDamageLAction);
 }
