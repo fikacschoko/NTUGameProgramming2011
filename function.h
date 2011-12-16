@@ -3,8 +3,14 @@
 
 bool actorChangePose( ACTORid , ACTIONid );
 
-bool beenHit( ACTORid attacker , ACTORid defender, OurFrame frame );
+bool beenHit( ACTORid  , ACTORid , OurFrame );
 
 float twoObjectDis( OBJECTid , OBJECTid );
 
 float posObjectDis( float* , OBJECTid );
+
+float twoObjectAngle(  OBJECTid , OBJECTid );
+
+float twoObjectCross(  OBJECTid , OBJECTid );
+
+//float twoDirAngle( float* , float* );
