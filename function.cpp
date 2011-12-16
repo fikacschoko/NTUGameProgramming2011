@@ -1,6 +1,6 @@
 #include "function.h"
 #include "TheFlyWin32.h"
-
+#define M_PI 3.14159265
 
 bool actorChangePose( ACTORid man, ACTIONid act )
 {
