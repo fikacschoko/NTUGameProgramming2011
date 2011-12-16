@@ -33,10 +33,10 @@ class Lyubu : public OurActor{
 		FnActor actor;
 
 		OurAction *ourRunAction;
-		AttackAction *ourAttack1Action;
-		AttackAction *ourAttack2Action;
-		AttackAction *ourAttack3Action;
-		AttackAction *ourAttack4Action;
+		OurAction *ourAttack1Action;
+		OurAction *ourAttack2Action;
+		OurAction *ourAttack3Action;
+		OurAction *ourAttack4Action;
 		//bool sendAction(OurAction*);
 		float pos_begin[3];
 		float MOVE_SPEED, MOVE_ANGLE;
@@ -45,8 +45,5 @@ class Lyubu : public OurActor{
 		virtual void damaged(int attack_pt);
 		void dealKey();
 		void Rotate(int degree, float cameraPos[]);
-		void damaged(int attack_pt){
-			return;
-		}
 };
 #endif

@@ -6,7 +6,7 @@ class OurActor{
 public:
 	//var
 	ACTORid aID;
-	int current_frame;
+	float current_frame;
 	OurAction* current_OurAction;
 	OurAction* ourIdleAction;
 
