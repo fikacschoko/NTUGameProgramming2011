@@ -66,7 +66,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack1Action->keyFrames[0] = new OurFrame;
 	ourAttack1Action->keyFrames[0]->frameNO = 7;
 	ourAttack1Action->keyFrames[0]->start_angle = 340;
-	ourAttack1Action->keyFrames[0]->valid_angle = 40;
+	ourAttack1Action->keyFrames[0]->plus_angle = 40;
 	ourAttack1Action->keyFrames[0]->valid_dis = 80;
 	ourAttack1Action->keyFrames[0]->damage_pt = 50;
 

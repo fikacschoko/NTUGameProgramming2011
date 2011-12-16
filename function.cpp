@@ -58,7 +58,7 @@ bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame ){
 		}
 		else
 		{
-			if( angle >= frame.start_angle || angle <= (frame.start_angle + frame.plus_angle) % 360 )
+			if( angle >= frame.start_angle || angle <= (frame.start_angle + frame.plus_angle)-360 )
 				return true;
 			else
 				return false;
@@ -98,7 +98,6 @@ float twoObjectCross(  OBJECTid centerID , OBJECTid targetID ){
 	center.GetWorldPosition( cenPos );
 	target.GetWorldPosition( tarPos );
 	center.GetWorldDirection( cenDir, eat );
-	target.GetWorldDirection( tarDir, eat );
 	
 	cen_tar[0] = tarPos[0]- cenPos[0];
 	cen_tar[1] = tarPos[1]- cenPos[1];
@@ -123,7 +122,6 @@ float twoObjectAngle(  OBJECTid centerID , OBJECTid targetID ){
 	center.GetWorldPosition( cenPos );
 	target.GetWorldPosition( tarPos );
 	center.GetWorldDirection( cenDir, eat );
-	target.GetWorldDirection( tarDir, eat );
 	
 	cen_tar[0] = tarPos[0]- cenPos[0];
 	cen_tar[1] = tarPos[1]- cenPos[1];

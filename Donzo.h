@@ -5,8 +5,18 @@
 #define PI 3.14159265
 
 class Donzo : public OurEnemyActor{
+	private:
+		WORLDid gID;
+		SCENEid sID;
+
 	public:
-		Donzo();
+		//var
+		FnActor actor;
+		float pos_begin[3];
+
+		//method
+		Donzo( WORLDid , SCENEid );
 		void AI();
+
 };
 #endif

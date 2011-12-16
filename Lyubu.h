@@ -44,5 +44,8 @@ class Lyubu : public OurActor{
 		Lyubu( WORLDid , SCENEid );
 		void dealKey();
 		void Rotate(int degree, float cameraPos[]);
+		void damaged(int attack_pt){
+			return;
+		}
 };
 #endif

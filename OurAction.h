@@ -27,7 +27,7 @@ public:
 struct OurFrame{
 	float frameNO;
 	float start_angle;
-	float valid_angle;
+	float plus_angle;
 	float valid_dis;
 	int damage_pt;
 };
