@@ -70,26 +70,26 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack1Action->keyFrames[0]->valid_dis = 80;
 	ourAttack1Action->keyFrames[0]->damage_pt = 50;
 
-	ourAttack1Action = new AttackAction();
-	ourAttack1Action->actID = actor.GetBodyAction(NULL, "NormalAttack2");
-	ourAttack1Action->frames_num = 0;
-	ourAttack1Action->play_speed = 1;
-	ourAttack1Action->priority = 5;
-	ourAttack1Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK2();
+	ourAttack2Action = new AttackAction();
+	ourAttack2Action->actID = actor.GetBodyAction(NULL, "NormalAttack2");
+	ourAttack2Action->frames_num = 0;
+	ourAttack2Action->play_speed = 1;
+	ourAttack2Action->priority = 5;
+	ourAttack2Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK2();
 
-	ourAttack1Action = new AttackAction();
-	ourAttack1Action->actID = actor.GetBodyAction(NULL, "NormalAttack3");
-	ourAttack1Action->frames_num = 0;
-	ourAttack1Action->play_speed = 1;
-	ourAttack1Action->priority = 5;
-	ourAttack1Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK3();
+	ourAttack3Action = new AttackAction();
+	ourAttack3Action->actID = actor.GetBodyAction(NULL, "NormalAttack3");
+	ourAttack3Action->frames_num = 0;
+	ourAttack3Action->play_speed = 1;
+	ourAttack3Action->priority = 5;
+	ourAttack3Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK3();
 
-	ourAttack1Action = new AttackAction();
-	ourAttack1Action->actID = actor.GetBodyAction(NULL, "NormalAttack4");
-	ourAttack1Action->frames_num = 0;
-	ourAttack1Action->play_speed = 1;
-	ourAttack1Action->priority = 5;
-	ourAttack1Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK4();
+	ourAttack4Action = new AttackAction();
+	ourAttack4Action->actID = actor.GetBodyAction(NULL, "NormalAttack4");
+	ourAttack4Action->frames_num = 0;
+	ourAttack4Action->play_speed = 1;
+	ourAttack4Action->priority = 5;
+	ourAttack4Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK4();
 
 	actor.MakeCurrentAction(0, NULL, ourIdleAction->actID);
 }
@@ -102,11 +102,11 @@ void Lyubu::dealKey()
 		{
 			if(	current_OurAction->type == LyubuAction::ACTION_NORMAL_ATTACK1())
 			{
-				//sendAction(ourAttack2Action);
+				sendAction(ourAttack2Action);
 			}
 		}
 		if(!Zpressed)
-			//sendAction(ourAttack1Action);
+			sendAction(ourAttack1Action);
 		Zpressed=true;
 	}
 	else
@@ -136,4 +136,7 @@ void Lyubu::Rotate(int degree, float cameraPos[])
 	debug[0] = actPos[0];
 	debug[1] = actPos[1];
 	debug[2] = actPos[2];
+}
+void Lyubu::damaged(int attack_pt)
+{
 }
