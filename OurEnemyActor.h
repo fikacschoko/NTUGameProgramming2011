@@ -14,6 +14,6 @@ class OurEnemyActor : public OurActor{
 		//var
 		EnemyTeam *team;
 		//method
-		//virtual void AI();
+		virtual void AI() = 0;
 };
 #endif

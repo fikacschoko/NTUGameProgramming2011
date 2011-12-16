@@ -37,12 +37,11 @@ class Lyubu : public OurActor{
 		OurAction *ourAttack2Action;
 		OurAction *ourAttack3Action;
 		OurAction *ourAttack4Action;
-		//bool sendAction(OurAction*);
 		float pos_begin[3];
 		float MOVE_SPEED, MOVE_ANGLE;
 
 		Lyubu( WORLDid , SCENEid );
-		virtual void damaged(int attack_pt);
+		void damaged(int attack_pt, ACTORid aID);
 		void dealKey();
 		void Rotate(int degree, float cameraPos[]);
 };
