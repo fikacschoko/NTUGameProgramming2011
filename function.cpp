@@ -52,20 +52,26 @@ bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame ){
 		if( frame.start_angle + frame.plus_angle <= 360 )
 		{
 			if(angle <= frame.start_angle + frame.plus_angle && angle >= frame.start_angle )
+			{
+
 				return true;
+			}
 			else
 				return false;
 		}
 		else
 		{
 			if( angle >= frame.start_angle || angle <= (frame.start_angle + frame.plus_angle)-360 )
+			{
+
 				return true;
+			}
 			else
 				return false;
 		}
 		
 	}
-
+	return false;
 }
 
 float twoObjectDis( OBJECTid a, OBJECTid b )
