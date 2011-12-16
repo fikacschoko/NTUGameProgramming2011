@@ -1,5 +1,5 @@
 #include "TheFlyWin32.h"
-#include "OurAction.h"
+#include "OurActor.h"
 
 bool actorChangePose( ACTORid , ACTIONid );
 

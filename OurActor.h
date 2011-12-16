@@ -2,7 +2,6 @@
 #define _OURACTOR_H_
 #include "TheFlyWin32.h"
 #include "OurAction.h"
-
 class OurActor{
 public:
 	//var

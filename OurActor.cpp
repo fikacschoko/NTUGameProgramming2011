@@ -13,8 +13,8 @@ void OurActor::ourPlayAction()
 	
 	::actorChangePose( aID, current_OurAction->actID );
 	//it's a loop action?
-	if( current_OurAction->type == ACTION_IDLE ||
-		current_OurAction->type == ACTION_WALK )
+	if( current_OurAction->type == Action_type::ACTION_IDLE() ||
+		current_OurAction->type == Action_type::ACTION_WALK() )
 	{
 		actor.Play(0, LOOP, current_OurAction->play_speed, false, true);
 	}
@@ -44,7 +44,7 @@ OurFrame* OurActor::getKeyFrame()
 {
 	int i;
 	
-	if( current_OurAction->type != ACTION_ATTACK )
+	if( current_OurAction->type != Action_type::ACTION_ATTACK() )
 		return NULL;
 		
 	AttackAction *attackAction = (AttackAction*)current_OurAction;
