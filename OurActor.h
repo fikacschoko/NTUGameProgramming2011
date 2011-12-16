@@ -6,14 +6,14 @@ class OurActor{
 public:
 	//var
 	ACTORid aID;
-	int current_frame;
+	float current_frame;
 	OurAction* current_OurAction;
 	OurAction* ourIdleAction;
 
 	//method
 	OurActor();
 
-	virtual void damaged(int attack_pt);
+	virtual void damaged( int attack_pt, ACTORid attacker ) = 0;
 	void ourPlayAction();
 	bool sendAction(OurAction*);
 	OurAction* getCurrentAction();

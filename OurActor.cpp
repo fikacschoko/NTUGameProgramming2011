@@ -1,7 +1,7 @@
 #include "OurAction.h"
 #include "OurActor.h"
 #include "function.h"
-int current_frame;
+#include <exception>
 //OurActControl
 OurActor::OurActor()
 {
@@ -11,12 +11,16 @@ void OurActor::ourPlayAction()
 	FnActor actor;
 	actor.Object( aID );
 	
-	::actorChangePose( aID, current_OurAction->actID );
+	if(::actorChangePose( aID, current_OurAction->actID ))
+	{
+		current_frame = 0;
+	}
 	//it's a loop action?
 	if( current_OurAction->type == Action_type::ACTION_IDLE() ||
 		current_OurAction->type == Action_type::ACTION_WALK() )
 	{
 		actor.Play(0, LOOP, current_OurAction->play_speed, false, true);
+		current_frame += current_OurAction->play_speed;
 	}
 	else
 	{
@@ -24,6 +28,8 @@ void OurActor::ourPlayAction()
 		notOver = actor.Play(0, ONCE, current_OurAction->play_speed, false, true);
 		if( !notOver )
 			current_OurAction = ourIdleAction;
+		else
+			current_frame += current_OurAction->play_speed;
 	}
 }
 
@@ -43,15 +49,13 @@ OurAction* OurActor::getCurrentAction()
 OurFrame* OurActor::getKeyFrame()
 {
 	int i;
-	
-	if( current_OurAction->type != Action_type::ACTION_ATTACK() )
-		return NULL;
-		
-	AttackAction *attackAction = (AttackAction*)current_OurAction;
-	for( i=0 ; i < attackAction->numOfKeyFrames ; i++ )
+	if(current_OurAction->keyFrames > 0)
 	{
-		if( attackAction->keyFrames[i]->frameNO <= current_frame && attackAction->keyFrames[i]->frameNO > current_frame - attackAction->play_speed )
-			return attackAction->keyFrames[i];
+		for( i=0 ; i < current_OurAction->numOfKeyFrames ; i++ )
+		{
+			if( current_OurAction->keyFrames[i]->frameNO <= current_frame && current_OurAction->keyFrames[i]->frameNO > current_frame - current_OurAction->play_speed )
+				return current_OurAction->keyFrames[i];
+		}
 	}
 	return NULL;
 }

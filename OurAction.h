@@ -4,16 +4,18 @@
 class Action_type
 {
 public:
-	Action_type();
+	Action_type()
+	{
+	}
 	Action_type(char *type)
 	{
 		this->value = type;
 	}
 	char *value;
 	static char*	ACTION_IDLE(){	return "GENERAL_IDLE"; }
-	static char*	ACTION_WALK(){	return "GENERAL_IDLE"; }
-	static char*	ACTION_DAMAGED(){	return "GENERAL_IDLE"; }
-	static char*	ACTION_ATTACK(){	return "GENERAL_IDLE"; }
+	static char*	ACTION_WALK(){	return "GENERAL_WALK"; }
+	static char*	ACTION_DAMAGED(){	return "GENERAL_DAMAGED"; }
+	static char*	ACTION_ATTACK(){	return "GENERAL_ATTACK"; }
 
 	bool operator==(const char *value)
 	{
@@ -27,7 +29,7 @@ public:
 struct OurFrame{
 	float frameNO;
 	float start_angle;
-	float valid_angle;
+	float plus_angle;
 	float valid_dis;
 	int damage_pt;
 };
@@ -41,6 +43,9 @@ public:
 	int defense_pt;
 	//Action_type *type;
 	Action_type type;
+	int numOfKeyFrames;
+	float combo_able_frame_start, combo_able_frame_end;
+	OurFrame **keyFrames;
 
 	OurAction();	
 	OurAction(int priority,	float play_speed,	float frames_num,	ACTIONid actID,	char *type);
@@ -79,11 +84,5 @@ public:
 		type = builder->temp_type;
 	}
 	*/
-};
-class AttackAction : public OurAction{
-public:
-	int numOfKeyFrames;
-	float combo_able_frame_start, combo_able_frame_end;
-	OurFrame **keyFrames;
 };
 #endif
