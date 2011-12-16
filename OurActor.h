@@ -5,17 +5,20 @@
 
 class OurActor{
 public:
-	OurActor();
+	//var
 	ACTORid aID;
 	int current_frame;
-
 	OurAction* current_OurAction;
 	OurAction* ourIdleAction;
+
+	//method
+	OurActor();
+
+	virtual void damaged(int attack_pt);
 	void ourPlayAction();
 	bool sendAction(OurAction*);
 	OurAction* getCurrentAction();
 	OurFrame* getKeyFrame();
 	float getCurrentFrame();
-	void damaged(int attack_pt);
 };
 #endif
