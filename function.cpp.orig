@@ -2,7 +2,6 @@
 #include "TheFlyWin32.h"
 #define M_PI 3.14159265
 
-extern float debug[6];
 bool actorChangePose( ACTORid man, ACTIONid act )
 {
 	FnActor actor;
@@ -15,6 +14,14 @@ bool actorChangePose( ACTORid man, ACTIONid act )
 }
 
 bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame ){
+<<<<<<< HEAD
+=======
+	FnActor attacker, defender;
+	float attPos[3], defPos[3], udir[3];
+	float attDir[3], defDir[3];
+	float bytan, bycos, bysin;
+	float dis = twoObjectDis( attacker.GetBaseObject(), defender.GetBaseObject() );
+>>>>>>> 1728c83fdc5a71332f5a03fb8c5315605c030fac
 
 	FnActor attacker, defender;
 	attacker.Object( attackerID );
@@ -25,15 +32,17 @@ bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame ){
 	float angle = twoObjectAngle( attacker.GetBaseObject(), defender.GetBaseObject() );
 	float dis = twoObjectDis( attacker.GetBaseObject(), defender.GetBaseObject() );
 	float cross = twoObjectCross( attacker.GetBaseObject(), defender.GetBaseObject() );
-	debug[0] = angle;
-	debug[1] = dis;
-	debug[2] = cross;
 	//float dot , absA, absB;
 
+<<<<<<< HEAD
 	/*attacker.GetWorldPosition( attPos );
 	defender.GetWorldPosition( defPos );
 	attacker.GetWorldDirection( attDir, eat );
 	defender.GetWorldDirection( defDir, eat );
+=======
+	attacker.GetWorldDirection( attDir , udir);
+	defender.GetWorldDirection( defDir , udir);
+>>>>>>> 1728c83fdc5a71332f5a03fb8c5315605c030fac
 	
 	att_def[0] = attPos[0]- defPos[0];
 	att_def[1] = attPos[1]- defPos[1];
@@ -56,26 +65,20 @@ bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame ){
 		if( frame.start_angle + frame.plus_angle <= 360 )
 		{
 			if(angle <= frame.start_angle + frame.plus_angle && angle >= frame.start_angle )
-			{
-
 				return true;
-			}
 			else
 				return false;
 		}
 		else
 		{
-			if( angle >= frame.start_angle || angle <= (frame.start_angle + frame.plus_angle)-360 )
-			{
-
+			if( angle >= frame.start_angle || angle <= (frame.start_angle + frame.plus_angle) % 360 )
 				return true;
-			}
 			else
 				return false;
 		}
 		
 	}
-	return false;
+
 }
 
 float twoObjectDis( OBJECTid a, OBJECTid b )
@@ -108,6 +111,7 @@ float twoObjectCross(  OBJECTid centerID , OBJECTid targetID ){
 	center.GetWorldPosition( cenPos );
 	target.GetWorldPosition( tarPos );
 	center.GetWorldDirection( cenDir, eat );
+	target.GetWorldDirection( tarDir, eat );
 	
 	cen_tar[0] = tarPos[0]- cenPos[0];
 	cen_tar[1] = tarPos[1]- cenPos[1];
@@ -132,6 +136,7 @@ float twoObjectAngle(  OBJECTid centerID , OBJECTid targetID ){
 	center.GetWorldPosition( cenPos );
 	target.GetWorldPosition( tarPos );
 	center.GetWorldDirection( cenDir, eat );
+	target.GetWorldDirection( tarDir, eat );
 	
 	cen_tar[0] = tarPos[0]- cenPos[0];
 	cen_tar[1] = tarPos[1]- cenPos[1];
