@@ -34,16 +34,27 @@ class Lyubu : public OurActor{
 		FnActor actor;
 		//vars
 		OurAction *ourRunAction;
+<<<<<<< HEAD
 		OurAction *ourAttack1Action;
 		OurAction *ourAttack2Action;
 		OurAction *ourAttack3Action;
 		OurAction *ourAttack4Action;
+=======
+		AttackAction *ourAttack1Action;
+		AttackAction *ourAttack2Action;
+		AttackAction *ourAttack3Action;
+		AttackAction *ourAttack4Action;
+>>>>>>> fb2991e4716063fc63b1bf7057de6a412bea8817
 		float pos_begin[3];
 		float MOVE_SPEED, MOVE_ANGLE;
 		//method
 		Lyubu( WORLDid , SCENEid );
+<<<<<<< HEAD
 		void damaged(int attack_pt, ACTORid aID);
+=======
+>>>>>>> fb2991e4716063fc63b1bf7057de6a412bea8817
 		void dealKey();
 		void Rotate(int degree, float cameraPos[]);
+		void damaged(int, ACTORid);
 };
 #endif
