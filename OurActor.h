@@ -13,7 +13,7 @@ public:
 	//method
 	OurActor();
 
-	virtual void damaged(int attack_pt);
+	virtual void damaged( int attack_pt, ACTORid attacker ) = 0;
 	void ourPlayAction();
 	bool sendAction(OurAction*);
 	OurAction* getCurrentAction();

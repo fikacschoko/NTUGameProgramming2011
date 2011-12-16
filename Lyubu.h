@@ -30,23 +30,20 @@ class Lyubu : public OurActor{
 
 		void dealFlag();
 	public:
+		//the fly
 		FnActor actor;
-
+		//vars
 		OurAction *ourRunAction;
 		AttackAction *ourAttack1Action;
 		AttackAction *ourAttack2Action;
 		AttackAction *ourAttack3Action;
 		AttackAction *ourAttack4Action;
-		//bool sendAction(OurAction*);
 		float pos_begin[3];
 		float MOVE_SPEED, MOVE_ANGLE;
-
+		//method
 		Lyubu( WORLDid , SCENEid );
-		virtual void damaged(int attack_pt);
 		void dealKey();
 		void Rotate(int degree, float cameraPos[]);
-		void damaged(int attack_pt){
-			return;
-		}
+		void damaged(int, ACTORid);
 };
 #endif

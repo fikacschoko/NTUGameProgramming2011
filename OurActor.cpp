@@ -55,9 +55,7 @@ OurFrame* OurActor::getKeyFrame()
 	}
 	return NULL;
 }
-void OurActor::damaged(int attack_pt)
-{
-}
+
 float OurActor::getCurrentFrame()
 {
 	return current_frame;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include"Donzo.h"
 Donzo::Donzo( WORLDid gID, SCENEid sID )
 {
@@ -22,26 +23,13 @@ Donzo::Donzo( WORLDid gID, SCENEid sID )
 	aID = scene.LoadActor("Donzo");
 	actor.Object(aID);
 
-
-	//-------action---------
-	//IDLE
-	ourIdleAction = new OurAction();
-	ourIdleAction->actID = actor.GetBodyAction(NULL, "CombatIdle");
-	ourIdleAction->frames_num = 0;
-	ourIdleAction->play_speed = 1;
-	ourIdleAction->priority = 0;
-	ourIdleAction->type.value = DonzoAction::ACTION_IDLE();
-
-	current_OurAction = ourIdleAction;
-	actor.MakeCurrentAction(0, NULL, ourIdleAction->actID);
 }
 
 void Donzo::AI()
-{
-
-}
-
-void Donzo::damaged( int attack_pt, ACTORid attacker )
+=======
+#include "Donzo.h"
+Donzo::Donzo()
+>>>>>>> dbd627842594594c8e0a29c32b237a7d9dad1760
 {
 
 }

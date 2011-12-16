@@ -1,7 +1,8 @@
 #ifndef _CAMERA3RD_H_
 #define _CAMERA3RD_H_
 #include "TheFlyWin32.h"
-#include "lyubu.h"
+#include "Lyubu.h"
+#include "Donzo.h"
 #define PI 3.14159265
 
 class Camera3rd
