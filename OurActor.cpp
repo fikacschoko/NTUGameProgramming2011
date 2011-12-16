@@ -27,7 +27,10 @@ void OurActor::ourPlayAction()
 		bool notOver;
 		notOver = actor.Play(0, ONCE, current_OurAction->play_speed, false, true);
 		if( !notOver )
-			current_OurAction = ourIdleAction;
+		{
+			if( current_OurAction->type.value != Action_type::ACTION_DIE() )
+				current_OurAction = ourIdleAction;
+		}
 		else
 			current_frame += current_OurAction->play_speed;
 	}

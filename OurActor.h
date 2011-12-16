@@ -7,6 +7,7 @@ public:
 	//var
 	FnActor actor;
 	ACTORid aID;
+	int HP;
 	float current_frame;
 	OurAction* current_OurAction;
 	OurAction* ourIdleAction;

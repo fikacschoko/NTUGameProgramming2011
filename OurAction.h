@@ -16,6 +16,7 @@ public:
 	static char*	ACTION_WALK(){	return "GENERAL_WALK"; }
 	static char*	ACTION_DAMAGED(){	return "GENERAL_DAMAGED"; }
 	static char*	ACTION_ATTACK(){	return "GENERAL_ATTACK"; }
+	static char*	ACTION_DIE(){	return "GENERAL_DIE"; }
 
 	bool operator==(const char *value)
 	{

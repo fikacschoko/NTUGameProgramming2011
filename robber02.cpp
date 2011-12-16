@@ -8,9 +8,11 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	FnWorld gw;
 	FnScene scene;
 
+	HP = 60;
 	pos_begin[0]=3550.0;
 	pos_begin[1]=-3216.0;
 	pos_begin[2]=1000.0f;
+
 	this->gID = gID;
 	this->sID = sID;
 
@@ -50,7 +52,13 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	ourDamage2Action->play_speed = 1;
 	ourDamage2Action->priority = 100;
 	ourDamage2Action->type.value = Action_type::ACTION_DAMAGED();
-
+	//Die
+	ourDieAction = new OurAction();
+	ourDieAction->actID = actor.GetBodyAction(NULL, "Dead");
+	ourDieAction->frames_num = 0;
+	ourDieAction->play_speed = 1;
+	ourDieAction->priority = 100;
+	ourDieAction->type.value = Action_type::ACTION_DIE();
 }
 
 void Robber02::AI()
@@ -60,8 +68,16 @@ void Robber02::AI()
 
 void Robber02::damaged( int attack_pt, ACTORid attacker, float angle )
 {
-	if( angle < 180 )
-		sendAction(ourDamage1Action);
+	HP -= attack_pt;
+	if( HP <= 0 )
+	{
+		sendAction(ourDieAction);
+	}
 	else
-		sendAction(ourDamage2Action);
+	{
+		if( angle < 180 )
+			sendAction(ourDamage1Action);
+		else
+			sendAction(ourDamage2Action);
+	}
 }

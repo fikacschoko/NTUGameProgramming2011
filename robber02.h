@@ -20,7 +20,9 @@
 			//var
 			//FnActor actor;
 			float pos_begin[3];
-			OurAction *ourDamage1Action, *ourDamage2Action;
+			OurAction *ourDamage1Action, 
+				*ourDamage2Action,
+				*ourDieAction;
 
 			//method
 			Robber02( WORLDid , SCENEid );

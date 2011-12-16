@@ -21,7 +21,9 @@ class Donzo : public OurEnemyActor{
 		//var
 		//FnActor actor;
 		float pos_begin[3];
-		OurAction *ourDamageLAction, *ourDamageHAction;
+		OurAction *ourDamageLAction, 
+			*ourDamageHAction,
+			*ourDieAction;
 
 		//method
 		Donzo( WORLDid , SCENEid );
