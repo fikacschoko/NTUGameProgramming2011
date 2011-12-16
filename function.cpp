@@ -3,6 +3,7 @@
 #define M_PI 3.14159265
 
 extern float debug[6];
+
 bool actorChangePose( ACTORid man, ACTIONid act )
 {
 	FnActor actor;
@@ -14,45 +15,20 @@ bool actorChangePose( ACTORid man, ACTIONid act )
 	return false;
 }
 
-bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame ){
+bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame, float angle ){
 
 	FnActor attacker, defender;
 	attacker.Object( attackerID );
 	defender.Object( defenderID );
-
-	//float attPos[3], defPos[3];
-	//float attDir[3] ,att_def[3] ,eat[3];
-	float angle = twoObjectAngle( attacker.GetBaseObject(), defender.GetBaseObject() );
+	//float angle = twoObjectAngle( attacker.GetBaseObject(), defender.GetBaseObject() );
 	float dis = twoObjectDis( attacker.GetBaseObject(), defender.GetBaseObject() );
-	float cross = twoObjectCross( attacker.GetBaseObject(), defender.GetBaseObject() );
 	debug[0] = angle;
 	debug[1] = dis;
-	debug[2] = cross;
-	//float dot , absA, absB;
-
-	/*attacker.GetWorldPosition( attPos );
-	defender.GetWorldPosition( defPos );
-	attacker.GetWorldDirection( attDir, eat );
-	defender.GetWorldDirection( defDir, eat );
-	
-	att_def[0] = attPos[0]- defPos[0];
-	att_def[1] = attPos[1]- defPos[1];
-	
-	//¤º¿nattDir&att_def
-	dot = attDir[0] * att_def[0] + attDir[1] * att_def[1];
-	absA = sqrt(attDir[0] * attDir[0] + attDir[1]* attDir[1]);
-	absB = sqrt(att_def[0] * att_def[0] + att_def[1]* att_def[1]);
-	angle = acos( dot/(absA*absB) )*180/M_PI;
-
-	cross = attDir[0] * att_def[1] - attDir[1] * att_def[0];
-	*/
+	//debug[2] = cross;
 	
 	if( dis <= frame.valid_dis )
 	{
-		if( cross < 0 )
-		{
-			angle = 360 - angle;			
-		}
+		
 		if( frame.start_angle + frame.plus_angle <= 360 )
 		{
 			if(angle <= frame.start_angle + frame.plus_angle && angle >= frame.start_angle )
@@ -94,30 +70,6 @@ float twoObjectDis( OBJECTid a, OBJECTid b )
 	return sqrt( x*x + y*y + z*z );
 }
 
-float twoObjectCross(  OBJECTid centerID , OBJECTid targetID ){
-	FnObject center, target;
-	center.Object( centerID );
-	target.Object( targetID );
-
-	float cenPos[3], tarPos[3];
-	float cenDir[3] ,cen_tar[3] ,eat[3];
-	float angle, absA, absB;
-	//float dis = twoObjectDis( center, target );
-	float cross;
-
-	center.GetWorldPosition( cenPos );
-	target.GetWorldPosition( tarPos );
-	center.GetWorldDirection( cenDir, eat );
-	
-	cen_tar[0] = tarPos[0]- cenPos[0];
-	cen_tar[1] = tarPos[1]- cenPos[1];
-	
-	cross = cenDir[0] * cen_tar[1] - cenDir[1] * cen_tar[0];
-
-	return cross;
-
-}
-
 float twoObjectAngle(  OBJECTid centerID , OBJECTid targetID ){
 	FnObject center, target;
 	center.Object( centerID );
@@ -126,6 +78,7 @@ float twoObjectAngle(  OBJECTid centerID , OBJECTid targetID ){
 	float cenPos[3], tarPos[3];
 	float cenDir[3] ,cen_tar[3] ,eat[3];
 	float angle, absA, absB;
+	float cross;
 	//float dis = twoObjectDis( center, target );
 	float dot;
 
@@ -142,6 +95,11 @@ float twoObjectAngle(  OBJECTid centerID , OBJECTid targetID ){
 	absB = sqrt(cen_tar[0] * cen_tar[0] + cen_tar[1]* cen_tar[1]);
 	angle = acos( dot/(absA*absB) )*180/M_PI;
 
+	cross = cenDir[0] * cen_tar[1] - cenDir[1] * cen_tar[0];
+	if( cross < 0 )
+	{
+		angle = 360 - angle;			
+	}
 	return angle;
 
 }

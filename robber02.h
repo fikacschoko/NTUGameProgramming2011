@@ -18,13 +18,13 @@
 	
 		public:
 			//var
-			FnActor actor;
+			//FnActor actor;
 			float pos_begin[3];
-			OurAction *ourDamageLAction;
+			OurAction *ourDamage1Action, *ourDamage2Action;
 
 			//method
 			Robber02( WORLDid , SCENEid );
 			void AI();
-			void damaged(int, ACTORid);
+			void damaged(int, ACTORid, float);
 	};
 #endif

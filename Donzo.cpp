@@ -41,6 +41,13 @@ Donzo::Donzo( WORLDid gID, SCENEid sID )
 	ourDamageLAction->play_speed = 1;
 	ourDamageLAction->priority = 100;
 	ourDamageLAction->type.value = DonzoAction::ACTION_DAMAGED();
+	//DamageH
+	ourDamageHAction = new OurAction();
+	ourDamageHAction->actID = actor.GetBodyAction(NULL, "DamageH");
+	ourDamageHAction->frames_num = 0;
+	ourDamageHAction->play_speed = 1;
+	ourDamageHAction->priority = 100;
+	ourDamageHAction->type.value = DonzoAction::ACTION_DAMAGED();
 }
 
 void Donzo::AI()
@@ -48,7 +55,10 @@ void Donzo::AI()
 
 }
 
-void Donzo::damaged( int attack_pt, ACTORid attacker )
+void Donzo::damaged( int attack_pt, ACTORid attacker, float angle )
 {
-	sendAction(ourDamageLAction);
+	if( angle < 180 )
+		sendAction(ourDamageHAction);
+	else
+		sendAction(ourDamageLAction);
 }

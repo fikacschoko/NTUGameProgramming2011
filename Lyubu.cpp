@@ -88,13 +88,13 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack2Action->keyFrames[0]->frameNO = 22;
 	ourAttack2Action->keyFrames[0]->start_angle = 180;
 	ourAttack2Action->keyFrames[0]->plus_angle = 180;
-	ourAttack2Action->keyFrames[0]->valid_dis = 80;
+	ourAttack2Action->keyFrames[0]->valid_dis = 150;
 	ourAttack2Action->keyFrames[0]->damage_pt = 30;
 	ourAttack2Action->keyFrames[1] = new OurFrame;
 	ourAttack2Action->keyFrames[1]->frameNO = 25;
 	ourAttack2Action->keyFrames[1]->start_angle = 0;
 	ourAttack2Action->keyFrames[1]->plus_angle = 90;
-	ourAttack2Action->keyFrames[1]->valid_dis = 70;
+	ourAttack2Action->keyFrames[1]->valid_dis = 170;
 	ourAttack2Action->keyFrames[1]->damage_pt = 30;
 
 	ourAttack3Action = new OurAction();
@@ -185,7 +185,7 @@ void Lyubu::Rotate(int degree, float cameraPos[])
 	debug[2] = actPos[2];
 }
 
-void Lyubu::damaged( int attack_pt, ACTORid attacker )
+void Lyubu::damaged( int attack_pt, ACTORid attacker, float angle )
 {
 
 }

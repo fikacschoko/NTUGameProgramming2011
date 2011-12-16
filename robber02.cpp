@@ -36,14 +36,20 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 
 	current_OurAction = ourIdleAction;
 	actor.MakeCurrentAction(0, NULL, ourIdleAction->actID);
-	//DamageL
-	ourDamageLAction = new OurAction();
-	ourDamageLAction->actID = actor.GetBodyAction(NULL, "Damage1");
-	ourDamageLAction->frames_num = 0;
-	ourDamageLAction->play_speed = 1;
-	ourDamageLAction->priority = 100;
-	ourDamageLAction->type.value = Action_type::ACTION_DAMAGED();
-
+	//Damage1
+	ourDamage1Action = new OurAction();
+	ourDamage1Action->actID = actor.GetBodyAction(NULL, "Damage1");
+	ourDamage1Action->frames_num = 0;
+	ourDamage1Action->play_speed = 1;
+	ourDamage1Action->priority = 100;
+	ourDamage1Action->type.value = Action_type::ACTION_DAMAGED();
+	//Damage2
+	ourDamage2Action = new OurAction();
+	ourDamage2Action->actID = actor.GetBodyAction(NULL, "Damage2");
+	ourDamage2Action->frames_num = 0;
+	ourDamage2Action->play_speed = 1;
+	ourDamage2Action->priority = 100;
+	ourDamage2Action->type.value = Action_type::ACTION_DAMAGED();
 
 }
 
@@ -52,7 +58,10 @@ void Robber02::AI()
 
 }
 
-void Robber02::damaged( int attack_pt, ACTORid attacker )
+void Robber02::damaged( int attack_pt, ACTORid attacker, float angle )
 {
-	sendAction(ourDamageLAction);
+	if( angle < 180 )
+		sendAction(ourDamage1Action);
+	else
+		sendAction(ourDamage2Action);
 }

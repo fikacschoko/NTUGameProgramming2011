@@ -5,6 +5,7 @@
 class OurActor{
 public:
 	//var
+	FnActor actor;
 	ACTORid aID;
 	float current_frame;
 	OurAction* current_OurAction;
@@ -13,7 +14,7 @@ public:
 	//method
 	OurActor();
 
-	virtual void damaged( int attack_pt, ACTORid attacker ) = 0;
+	virtual void damaged( int attack_pt, ACTORid attacker, float angle ) = 0;
 	void ourPlayAction();
 	bool sendAction(OurAction*);
 	OurAction* getCurrentAction();

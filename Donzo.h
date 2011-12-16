@@ -19,13 +19,13 @@ class Donzo : public OurEnemyActor{
 
 	public:
 		//var
-		FnActor actor;
+		//FnActor actor;
 		float pos_begin[3];
-		OurAction *ourDamageLAction;
+		OurAction *ourDamageLAction, *ourDamageHAction;
 
 		//method
 		Donzo( WORLDid , SCENEid );
 		void AI();
-		void damaged(int, ACTORid);
+		void damaged(int, ACTORid, float);
 };
 #endif
