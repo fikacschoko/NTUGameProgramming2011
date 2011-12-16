@@ -39,13 +39,7 @@ class Lyubu : public OurActor{
 		AttackAction *ourAttack2Action;
 		AttackAction *ourAttack3Action;
 		AttackAction *ourAttack4Action;
-=======
-		OurAction *ourAttack1Action;
-		OurAction *ourAttack2Action;
-		OurAction *ourAttack3Action;
-		OurAction *ourAttack4Action;
-		//bool sendAction(OurAction*);
->>>>>>> 6688984f06dd2daee5691702fadc9a071529bd28
+>>>>>>> fb2991e4716063fc63b1bf7057de6a412bea8817
 		float pos_begin[3];
 		float MOVE_SPEED, MOVE_ANGLE;
 		//method
