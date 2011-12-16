@@ -43,6 +43,9 @@ public:
 	int defense_pt;
 	//Action_type *type;
 	Action_type type;
+	int numOfKeyFrames;
+	float combo_able_frame_start, combo_able_frame_end;
+	OurFrame **keyFrames;
 
 	OurAction();	
 	OurAction(int priority,	float play_speed,	float frames_num,	ACTIONid actID,	char *type);
@@ -81,11 +84,5 @@ public:
 		type = builder->temp_type;
 	}
 	*/
-};
-class AttackAction : public OurAction{
-public:
-	int numOfKeyFrames;
-	float combo_able_frame_start, combo_able_frame_end;
-	OurFrame **keyFrames;
 };
 #endif

@@ -55,13 +55,15 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourRunAction->priority = 0;
 	ourRunAction->type.value = LyubuAction::ACTION_WALK();
 	//ATTACKS
-	ourAttack1Action = new AttackAction();
+	ourAttack1Action = new OurAction();
 	ourAttack1Action->actID = actor.GetBodyAction(NULL, "NormalAttack1");
 	ourAttack1Action->numOfKeyFrames = 1;
 	ourAttack1Action->frames_num = 0;
-	ourAttack1Action->play_speed = 1;
+	ourAttack1Action->play_speed = 0.8;
 	ourAttack1Action->priority = 5;
 	ourAttack1Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK1();
+	ourAttack1Action->combo_able_frame_start = 10;
+	ourAttack1Action->combo_able_frame_end = 20;
 	ourAttack1Action->keyFrames = new OurFrame*[1];
 	ourAttack1Action->keyFrames[0] = new OurFrame;
 	ourAttack1Action->keyFrames[0]->frameNO = 7;
@@ -70,43 +72,52 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack1Action->keyFrames[0]->valid_dis = 80;
 	ourAttack1Action->keyFrames[0]->damage_pt = 50;
 
-	ourAttack2Action = new AttackAction();
+	ourAttack2Action = new OurAction();
 	ourAttack2Action->actID = actor.GetBodyAction(NULL, "NormalAttack2");
 	ourAttack2Action->frames_num = 0;
-	ourAttack2Action->play_speed = 1;
-	ourAttack2Action->priority = 5;
+	ourAttack2Action->play_speed = 0.8;
+	ourAttack2Action->priority = 6;
 	ourAttack2Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK2();
+	ourAttack2Action->combo_able_frame_start = 15;
+	ourAttack2Action->combo_able_frame_end = 35;
 
-	ourAttack3Action = new AttackAction();
+	ourAttack3Action = new OurAction();
 	ourAttack3Action->actID = actor.GetBodyAction(NULL, "NormalAttack3");
 	ourAttack3Action->frames_num = 0;
-	ourAttack3Action->play_speed = 1;
-	ourAttack3Action->priority = 5;
+	ourAttack3Action->play_speed = 0.8;
+	ourAttack3Action->priority = 7;
 	ourAttack3Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK3();
+	ourAttack3Action->combo_able_frame_start = 25;
+	ourAttack3Action->combo_able_frame_end = 45;
 
-	ourAttack4Action = new AttackAction();
+	ourAttack4Action = new OurAction();
 	ourAttack4Action->actID = actor.GetBodyAction(NULL, "NormalAttack4");
 	ourAttack4Action->frames_num = 0;
-	ourAttack4Action->play_speed = 1;
-	ourAttack4Action->priority = 5;
+	ourAttack4Action->play_speed = 0.8;
+	ourAttack4Action->priority = 8;
 	ourAttack4Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK4();
-
+	ourAttack4Action->combo_able_frame_start = 25;
+	ourAttack4Action->combo_able_frame_end = 48;
 	actor.MakeCurrentAction(0, NULL, ourIdleAction->actID);
 }
 void Lyubu::dealKey()
 {
 	static bool Zpressed=false;
 	if (FyCheckHotKeyStatus(FY_Z) ) {
-		OurFrame *keyFrame = getKeyFrame();
-		if(keyFrame != NULL)
-		{
-			if(	current_OurAction->type == LyubuAction::ACTION_NORMAL_ATTACK1())
-			{
-				sendAction(ourAttack2Action);
-			}
-		}
 		if(!Zpressed)
+		{
+			//表示是攻擊動作，且在接招範圍
+			if(current_frame > current_OurAction->combo_able_frame_start && current_frame <= current_OurAction->combo_able_frame_end)
+			{
+				if(	current_OurAction->type == LyubuAction::ACTION_NORMAL_ATTACK1())
+					sendAction(ourAttack2Action);
+				else if(current_OurAction->type == LyubuAction::ACTION_NORMAL_ATTACK2())
+					sendAction(ourAttack3Action);
+				else if(current_OurAction->type == LyubuAction::ACTION_NORMAL_ATTACK3())
+					sendAction(ourAttack4Action);
+			}
 			sendAction(ourAttack1Action);
+		}
 		Zpressed=true;
 	}
 	else
