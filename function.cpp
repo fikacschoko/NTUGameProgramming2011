@@ -117,3 +117,18 @@ float posObjectDis( float *pos, OBJECTid a )
 	z = pos_a[2]-pos[2];
 	return sqrt( x*x + y*y + z*z );
 }
+
+
+bool actorFaceTo( ACTORid aID, float x, float y, float z ){
+	FnActor actor;
+	float pos[3], face[3];
+	actor.Object(aID);
+	
+	actor.GetWorldPosition( pos );
+	face[0] = x-pos[0];
+	face[1] = y-pos[1];
+	face[2] = z-pos[2];
+	actor.SetWorldDirection(face,NULL);
+
+	return true;
+}

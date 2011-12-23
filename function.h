@@ -10,3 +10,5 @@ float twoObjectDis( OBJECTid , OBJECTid );
 float posObjectDis( float* , OBJECTid );
 
 float twoObjectAngle(  OBJECTid , OBJECTid );
+
+bool actorFaceTo( ACTORid aID, float x, float y, float z ); //world position
