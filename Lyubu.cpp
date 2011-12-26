@@ -1,5 +1,6 @@
 #include "Lyubu.h"
 #include "function.h"
+#include "AllData.h"
 
 extern float debug[4];
 Lyubu::Lyubu( WORLDid gID, SCENEid sID )
@@ -72,6 +73,12 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack1Action->keyFrames[0]->plus_angle = 40;
 	ourAttack1Action->keyFrames[0]->valid_dis = 160;
 	ourAttack1Action->keyFrames[0]->damage_pt = 50;
+	//sound
+	ourAttack1Action->numOfAudioFrames = 1;
+	ourAttack1Action->audioFrames = new OurAudioFrame*[1];
+	ourAttack1Action->audioFrames[0] = new OurAudioFrame;
+	ourAttack1Action->audioFrames[0]->frameNO = 5;
+	ourAttack1Action->audioFrames[0]->audioID = AllAudio::s01_pose07;
 
 	ourAttack2Action = new OurAction();
 	ourAttack2Action->actID = actor.GetBodyAction(NULL, "NormalAttack2");

@@ -2,10 +2,13 @@
 #include "OurActor.h"
 #include "function.h"
 #include <exception>
+
 //OurActControl
 OurActor::OurActor()
 {
+
 }
+
 void OurActor::ourPlayAction()
 {
 	FnActor actor;
@@ -34,6 +37,8 @@ void OurActor::ourPlayAction()
 		else
 			current_frame += current_OurAction->play_speed;
 	}
+
+	playActionAudio();
 }
 
 bool OurActor::sendAction( OurAction* action )
@@ -51,12 +56,12 @@ OurAction* OurActor::getCurrentAction()
 
 OurFrame* OurActor::getKeyFrame()
 {
-	int i;
 	if(current_OurAction->keyFrames > 0)
 	{
-		for( i=0 ; i < current_OurAction->numOfKeyFrames ; i++ )
+		for( int i=0 ; i < current_OurAction->numOfKeyFrames ; i++ )
 		{
-			if( current_OurAction->keyFrames[i]->frameNO <= current_frame && current_OurAction->keyFrames[i]->frameNO > current_frame - current_OurAction->play_speed )
+			if( current_OurAction->keyFrames[i]->frameNO <= current_frame && 
+				current_OurAction->keyFrames[i]->frameNO > current_frame - current_OurAction->play_speed )
 				return current_OurAction->keyFrames[i];
 		}
 	}
@@ -66,4 +71,22 @@ OurFrame* OurActor::getKeyFrame()
 float OurActor::getCurrentFrame()
 {
 	return current_frame;
+}
+
+bool OurActor::playActionAudio()
+{
+	if( current_OurAction->numOfAudioFrames > 0 )
+	{
+		FnAudio audio;
+		for( int i=0 ; i<current_OurAction->numOfAudioFrames ; i++ )
+		{
+			if( current_OurAction->audioFrames[i]->frameNO <= current_frame && 
+				current_OurAction->audioFrames[i]->frameNO > current_frame - current_OurAction->play_speed ){
+					audio.Object(current_OurAction->audioFrames[i]->audioID);
+					audio.Play(ONCE);
+					return true;
+			}
+		}
+	}
+	return false;
 }

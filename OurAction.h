@@ -35,6 +35,11 @@ struct OurFrame{
 	int damage_pt;
 };
 
+struct OurAudioFrame{
+	float frameNO;
+	AUDIOid audioID;
+};
+
 class OurAction{
 public:
 	ACTIONid actID;
@@ -44,9 +49,13 @@ public:
 	int defense_pt;
 	bool isAttack;
 	Action_type type;
-	int numOfKeyFrames;
 	float combo_able_frame_start, combo_able_frame_end;
+	//key frame for attack detect
+	int numOfKeyFrames;
 	OurFrame **keyFrames;
+	//audio frame
+	int numOfAudioFrames;
+	OurAudioFrame **audioFrames;
 
 	OurAction();	
 	OurAction(int priority,	float play_speed,	float frames_num,	ACTIONid actID,	char *type);
