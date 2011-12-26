@@ -61,7 +61,7 @@ OurFrame* OurActor::getKeyFrame()
 		for( int i=0 ; i < current_OurAction->numOfKeyFrames ; i++ )
 		{
 			if( current_OurAction->keyFrames[i]->frameNO <= current_frame && 
-				current_OurAction->keyFrames[i]->frameNO > current_frame - current_OurAction->play_speed )
+				current_OurAction->keyFrames[i]->frameNO >= current_frame - current_OurAction->play_speed )
 				return current_OurAction->keyFrames[i];
 		}
 	}
@@ -81,7 +81,7 @@ bool OurActor::playActionAudio()
 		for( int i=0 ; i<current_OurAction->numOfAudioFrames ; i++ )
 		{
 			if( current_OurAction->audioFrames[i]->frameNO <= current_frame && 
-				current_OurAction->audioFrames[i]->frameNO > current_frame - current_OurAction->play_speed ){
+				current_OurAction->audioFrames[i]->frameNO >= current_frame - current_OurAction->play_speed ){
 					audio.Object(current_OurAction->audioFrames[i]->audioID);
 					audio.Play(ONCE);
 					return true;
