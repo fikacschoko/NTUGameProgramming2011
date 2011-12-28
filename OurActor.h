@@ -8,20 +8,23 @@ public:
 	FnActor actor;
 	ACTORid aID;
 	int HP;
+	
+	//method
+	OurActor();
+	virtual void damaged( int attack_pt, ACTORid attacker, float angle ) = 0;
+	
+	//action center
 	float current_frame;
 	OurAction* current_OurAction;
 	OurAction* ourIdleAction;
 	OurAction* ourCombatIdleAction;
 	OurAction* ourRunAction;
 
-	//method
-	OurActor();
-
-	virtual void damaged( int attack_pt, ACTORid attacker, float angle ) = 0;
 	void ourPlayAction();
 	bool sendAction(OurAction*);
 	OurAction* getCurrentAction();
 	OurFrame* getKeyFrame();
 	float getCurrentFrame();
+	bool playActionAudio();
 };
 #endif

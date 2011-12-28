@@ -3,6 +3,7 @@
 #include "TheFlyWin32.h"
 #include "OurActor.h"
 #include "OurAction.h"
+#include "AllData.h"
 #define PI 3.14159265
 
 enum Direction{LEFT,RIGHT,FORWARD,BACK};

@@ -6,6 +6,7 @@ OurAction::OurAction()
 	this->defense_pt = 0;
 	this->keyFrames = 0;
 	this->isAttack = false;
+	this->audioFrames = 0;
 	//this->type = NULL;
 }
 

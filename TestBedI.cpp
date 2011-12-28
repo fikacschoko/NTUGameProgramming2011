@@ -678,15 +678,30 @@ void TBScene::Play(float skipFrame, BOOL beBase)
    int i, f, r, u;
    for (i = 0; i < numActor; i++) {
       if (actorList[i] != NULL) {
-         if (!actorList[i]->Play(0, ONCE, skipFrame, beBase, TRUE)) {
-            actorList[i]->Play(0, START, 0.0f, beBase, TRUE);
+		  if(FyCheckHotKeyStatus(FY_DOWN))
+		  {
+			  	if (!actorList[i]->Play(0, ONCE, 0, beBase, TRUE)) {
+				actorList[i]->Play(0, START, 0.0f, beBase, TRUE);
 
-            // reset the position
-            float pos[3];
-            pos[0] = pos[1] = pos[2] = 0.0f;
-            actorList[i]->SetPosition(pos);
-         }
-         actorList[i]->QueryLastMovementResult(&f, &r, &u);
+				// reset the position
+				float pos[3];
+				pos[0] = pos[1] = pos[2] = 0.0f;
+				actorList[i]->SetPosition(pos);
+			 }
+			 actorList[i]->QueryLastMovementResult(&f, &r, &u);
+		  }
+		  else
+		  {
+			 if (!actorList[i]->Play(0, ONCE, skipFrame, beBase, TRUE)) {
+				actorList[i]->Play(0, START, 0.0f, beBase, TRUE);
+
+				// reset the position
+				float pos[3];
+				pos[0] = pos[1] = pos[2] = 0.0f;
+				actorList[i]->SetPosition(pos);
+			 }
+			 actorList[i]->QueryLastMovementResult(&f, &r, &u);
+		  }
       }
    }
 }
@@ -7662,6 +7677,8 @@ void TbRenderIt(int skip)
                sprintf(string, " %s", action.GetName());
                ox = tbTinyEFont.Write(string, ox, oy, 128, 255, 0);
             }
+
+
          }
       }
       else {
@@ -7695,6 +7712,21 @@ void TbRenderIt(int skip)
          iOne++;
       }
 
+		//current frame
+		{
+			actor.Object(curA);
+            ACTIONid actionID = actor.GetCurrentAction(0, NULL);
+            FnAction action;
+            if (actionID != FAILED_ID) {
+				action.Object(actionID);
+				char string[256];
+				sprintf(string, "CurrentFrame : %f", action.GetCurrentFrame() );
+				ox = tbBottomVPOX;
+				oy = tbBottomVPOY + 15*iOne;
+				ox = tbTinyEFont.Write(string, ox, oy, 128, 255, 0);
+				iOne++;
+			}
+		}
       if (tbBeShuFa) {
          tbTinyEFont.End();
          tbBeShuFa = FALSE;

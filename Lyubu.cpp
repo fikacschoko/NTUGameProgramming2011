@@ -1,5 +1,6 @@
 #include "Lyubu.h"
 #include "function.h"
+#include "AllData.h"
 
 extern float debug[4];
 Lyubu::Lyubu( WORLDid gID, SCENEid sID )
@@ -72,6 +73,16 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack1Action->keyFrames[0]->plus_angle = 40;
 	ourAttack1Action->keyFrames[0]->valid_dis = 160;
 	ourAttack1Action->keyFrames[0]->damage_pt = 50;
+	//sound
+	ourAttack1Action->numOfAudioFrames = 2;
+	ourAttack1Action->audioFrames = new OurAudioFrame*[2];
+	ourAttack1Action->audioFrames[0] = new OurAudioFrame;
+	ourAttack1Action->audioFrames[0]->frameNO = 0;
+	ourAttack1Action->audioFrames[0]->audioID = AllAudio::s01_pose07;
+
+	ourAttack1Action->audioFrames[1] = new OurAudioFrame;
+	ourAttack1Action->audioFrames[1]->frameNO = 15;
+	ourAttack1Action->audioFrames[1]->audioID = AllAudio::eat;
 
 	ourAttack2Action = new OurAction();
 	ourAttack2Action->actID = actor.GetBodyAction(NULL, "NormalAttack2");
@@ -96,6 +107,12 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack2Action->keyFrames[1]->plus_angle = 90;
 	ourAttack2Action->keyFrames[1]->valid_dis = 170;
 	ourAttack2Action->keyFrames[1]->damage_pt = 30;
+	//sound
+	ourAttack2Action->numOfAudioFrames = 1;
+	ourAttack2Action->audioFrames = new OurAudioFrame*[1];
+	ourAttack2Action->audioFrames[0] = new OurAudioFrame;
+	ourAttack2Action->audioFrames[0]->frameNO = 5;
+	ourAttack2Action->audioFrames[0]->audioID = AllAudio::s02_pose10;
 
 	ourAttack3Action = new OurAction();
 	ourAttack3Action->actID = actor.GetBodyAction(NULL, "NormalAttack3");
