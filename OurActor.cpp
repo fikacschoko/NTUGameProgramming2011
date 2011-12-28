@@ -1,7 +1,6 @@
 #include "OurAction.h"
 #include "OurActor.h"
 #include "function.h"
-#include <exception>
 //OurActControl
 OurActor::OurActor()
 {

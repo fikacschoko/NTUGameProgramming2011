@@ -70,6 +70,15 @@ float twoObjectDis( OBJECTid a, OBJECTid b )
 	return sqrt( x*x + y*y + z*z );
 }
 
+float twoPointDis( float *a, float *b )
+{
+	float x = a[0]-b[0];
+	float y = a[1]-b[1];
+	float z = a[2]-b[2];
+
+	return sqrt( x*x + y*y + z*z );
+}
+
 float twoObjectAngle(  OBJECTid centerID , OBJECTid targetID ){
 	FnObject center, target;
 	center.Object( centerID );

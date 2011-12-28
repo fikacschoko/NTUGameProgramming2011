@@ -11,6 +11,8 @@ public:
 	float current_frame;
 	OurAction* current_OurAction;
 	OurAction* ourIdleAction;
+	OurAction* ourCombatIdleAction;
+	OurAction* ourRunAction;
 
 	//method
 	OurActor();

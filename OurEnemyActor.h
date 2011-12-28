@@ -13,7 +13,13 @@ class OurEnemyActor : public OurActor{
 	public:
 		//var
 		EnemyTeam *team;
+		bool justRun;
 		//method
-		virtual void AI() = 0;
+		OurEnemyActor();
+		virtual void AI(ACTORid enemy, ACTORid *friends, int friends_num, bool leader) = 0;
+		void walkingAgent(ACTORid enemy, ACTORid *friends, int friends_num, bool leader);
+	private:
+		void flockingPosition(float *newPos, float *selfPos, float *targetPos, ACTORid *groupMember, float groupMember_num);
 };
+
 #endif

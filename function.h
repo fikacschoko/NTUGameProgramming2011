@@ -7,6 +7,8 @@ bool beenHit( ACTORid  , ACTORid , OurFrame, float );
 
 float twoObjectDis( OBJECTid , OBJECTid );
 
+float twoPointDis( float*, float* );
+
 float posObjectDis( float* , OBJECTid );
 
 float twoObjectAngle(  OBJECTid , OBJECTid );
