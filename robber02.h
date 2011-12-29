@@ -18,7 +18,6 @@
 	
 		public:
 			//var
-			//FnActor actor;
 			float pos_begin[3];
 			OurAction *ourDamage1Action, 
 				*ourDamage2Action,

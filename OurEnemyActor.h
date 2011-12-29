@@ -13,7 +13,16 @@ class OurEnemyActor : public OurActor{
 	public:
 		//var
 		EnemyTeam *team;
+
 		//method
 		virtual void AI() = 0;
+
+		//blood
+		FnBillBoard blood;
+		OBJECTid bloodID;
+		float blood_length;
+		float blood_width;
+
+		void bloodAdjust();
 };
 #endif

@@ -8,7 +8,9 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	FnWorld gw;
 	FnScene scene;
 
-	HP = 60;
+	HP_MAX = 150;
+	HP = HP_MAX;
+
 	pos_begin[0]=3550.0;
 	pos_begin[1]=-3216.0;
 	pos_begin[2]=1000.0f;
@@ -59,6 +61,28 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	ourDieAction->play_speed = 1;
 	ourDieAction->priority = 100;
 	ourDieAction->type.value = Action_type::ACTION_DIE();
+
+	//blood
+	{
+		FnObject blood;
+		float pos[3], size[2], color[3];
+		blood_length = 15;
+		blood_width = 1.5;
+
+		bloodID = scene.CreateObject(ROOT);
+		blood.Object(bloodID);
+		
+		pos[0] = 0.0f;
+		pos[1] = 0.0f;
+		pos[2] = 70.0f;
+		size[0] = blood_length;
+		size[1] = blood_width;
+		color[0] = 1.0f; color[1] = color[2] = 0.0f;
+
+		blood.Billboard(pos, size, NULL, 0, color);
+		blood.SetParent(actor.GetBaseObject());
+	}
+	this->blood.Object(bloodID,0);
 }
 
 void Robber02::AI()
@@ -69,6 +93,9 @@ void Robber02::AI()
 void Robber02::damaged( int attack_pt, ACTORid attacker, float angle )
 {
 	HP -= attack_pt;
+
+	bloodAdjust();
+
 	if( HP <= 0 )
 	{
 		sendAction(ourDieAction);

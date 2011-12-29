@@ -4,7 +4,8 @@ Donzo::Donzo( WORLDid gID, SCENEid sID )
 	FnWorld gw;
 	FnScene scene;
 
-	HP = 120;
+	HP_MAX = 300;
+	HP = HP_MAX;
 
 	pos_begin[0]=3469.0;
 	pos_begin[1]=-3208.0;
@@ -60,6 +61,28 @@ Donzo::Donzo( WORLDid gID, SCENEid sID )
 	ourDieAction->play_speed = 1;
 	ourDieAction->priority = 1000;
 	ourDieAction->type.value = DonzoAction::ACTION_DIE();
+
+	//blood
+	{
+		FnObject blood;
+		float pos[3], size[2], color[3];
+		blood_length = 50;
+		blood_width = 2;
+
+		bloodID = scene.CreateObject(ROOT);
+		blood.Object(bloodID);
+		
+		pos[0] = 0.0f;
+		pos[1] = 0.0f;
+		pos[2] = 100.0f;
+		size[0] = blood_length;
+		size[1] = blood_width;
+		color[0] = 1.0f; color[1] = 0.8; color[2] = 0.2f;
+
+		blood.Billboard(pos, size, NULL, 0, color);
+		blood.SetParent(actor.GetBaseObject());
+	}
+	this->blood.Object(bloodID,0);
 }
 
 void Donzo::AI()
@@ -70,6 +93,9 @@ void Donzo::AI()
 void Donzo::damaged( int attack_pt, ACTORid attacker, float angle )
 {
 	HP -= attack_pt;
+
+	bloodAdjust();
+
 	if( HP < 0 )
 		sendAction(ourDieAction);
 	else{
