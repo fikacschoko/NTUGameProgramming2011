@@ -18,6 +18,8 @@ public:
 	float current_frame;
 	OurAction* current_OurAction;
 	OurAction* ourIdleAction;
+	OurAction* ourCombatIdleAction;
+	OurAction* ourRunAction;
 
 	void ourPlayAction();
 	bool sendAction(OurAction*);

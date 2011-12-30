@@ -25,7 +25,7 @@
 
 			//method
 			Robber02( WORLDid , SCENEid );
-			void AI();
+			void AI(ACTORid enemy, ACTORid *friends, int friends_num, bool leader);
 			void damaged(int, ACTORid, float);
 	};
 #endif

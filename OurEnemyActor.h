@@ -14,15 +14,21 @@ class OurEnemyActor : public OurActor{
 		//var
 		EnemyTeam *team;
 
+		bool justRun;
 		//method
-		virtual void AI() = 0;
+		OurEnemyActor();
 
 		//blood
 		FnBillBoard blood;
 		OBJECTid bloodID;
+		virtual void AI(ACTORid enemy, ACTORid *friends, int friends_num, bool leader) = 0;
+		void walkingAgent(ACTORid enemy, ACTORid *friends, int friends_num, bool leader);
+	private:
+		void flockingPosition(float *newPos, float *selfPos, float *targetPos, ACTORid *groupMember, float groupMember_num);
 		float blood_length;
 		float blood_width;
 
 		void bloodAdjust();
 };
+
 #endif

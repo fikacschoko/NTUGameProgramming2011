@@ -2,7 +2,7 @@
 #include "function.h"
 #include "OurActor.h"
 #include "OurAction.h" 
-
+extern float debug[6];
 Robber02::Robber02( WORLDid gID, SCENEid sID )
 {
 	FnWorld gw;
@@ -40,6 +40,17 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 
 	current_OurAction = ourIdleAction;
 	actor.MakeCurrentAction(0, NULL, ourIdleAction->actID);
+
+	ourCombatIdleAction = ourIdleAction;
+
+	//Run
+	ourRunAction = new OurAction();
+	ourRunAction->actID = actor.GetBodyAction(NULL, "Run");
+	ourRunAction->frames_num = 0;
+	ourRunAction->play_speed = 1;
+	ourRunAction->priority = 0;
+	ourRunAction->type.value = Action_type::ACTION_WALK();
+
 	//Damage1
 	ourDamage1Action = new OurAction();
 	ourDamage1Action->actID = actor.GetBodyAction(NULL, "Damage1");
@@ -85,11 +96,10 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	this->blood.Object(bloodID,0);
 }
 
-void Robber02::AI()
+void Robber02::AI(ACTORid enemy, ACTORid *friends, int friends_num, bool leader)
 {
-
+	walkingAgent(enemy, friends, friends_num, leader);
 }
-
 void Robber02::damaged( int attack_pt, ACTORid attacker, float angle )
 {
 	HP -= attack_pt;
