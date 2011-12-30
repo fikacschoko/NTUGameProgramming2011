@@ -60,7 +60,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack1Action->actID = actor.GetBodyAction(NULL, "NormalAttack1");
 	ourAttack1Action->isAttack = true;
 	ourAttack1Action->frames_num = 0;
-	ourAttack1Action->play_speed = 0.8;
+	ourAttack1Action->play_speed = 1;
 	ourAttack1Action->priority = 5;
 	ourAttack1Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK1();
 	ourAttack1Action->combo_able_frame_start = 10;
@@ -78,11 +78,16 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack1Action->audioFrames = new OurAudioFrame*[2];
 	ourAttack1Action->audioFrames[0] = new OurAudioFrame;
 	ourAttack1Action->audioFrames[0]->frameNO = 0;
-	ourAttack1Action->audioFrames[0]->audioID = AllAudio::s01_pose07;
-
+	ourAttack1Action->audioFrames[0]->audioID = AllAudio::s02_pose10;
 	ourAttack1Action->audioFrames[1] = new OurAudioFrame;
-	ourAttack1Action->audioFrames[1]->frameNO = 15;
+	ourAttack1Action->audioFrames[1]->frameNO = 10;
 	ourAttack1Action->audioFrames[1]->audioID = AllAudio::eat;
+	//fx
+	ourAttack1Action->numOfFxFrames = 1;
+	ourAttack1Action->fxFrames = new OurFxFrame*[1];
+	ourAttack1Action->fxFrames[0] = new OurFxFrame;
+	ourAttack1Action->fxFrames[0]->frameNO = 5;
+	ourAttack1Action->fxFrames[0]->fxName = AllFx::Attack01;
 
 	ourAttack2Action = new OurAction();
 	ourAttack2Action->actID = actor.GetBodyAction(NULL, "NormalAttack2");

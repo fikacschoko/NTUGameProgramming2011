@@ -12,10 +12,6 @@
 
 
 	class Robber02 : public OurEnemyActor{
-		private:
-			WORLDid gID;
-			SCENEid sID;
-	
 		public:
 			//var
 			float pos_begin[3];

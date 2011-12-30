@@ -1,4 +1,4 @@
-#include"AllData.h"
+#include "AllData.h"
 
 AUDIOid AllAudio::s01_pose05 = 0;
 AUDIOid AllAudio::s01_pose07 = 0;
@@ -15,6 +15,21 @@ AUDIOid AllAudio::s03_pose25 = 0;
 AUDIOid AllAudio::eat = 0;
 AUDIOid AllAudio::se_select = 0;
 
+char* AllFx::Attack01 = "Attack01";
+WORLDid AllFx::gID = 0;
+
+eF3DFX* AllFx::getFX(char*filename, SCENEid sID){
+	FnWorld gw;
+	eF3DFX* fx = new eF3DFX(sID);
+	gw.Object(gID);
+
+	gw.SetTexturePath("Data\\NTU4\\FXs\\Textures");
+	gw.SetObjectPath("Data\\NTU4\\FXs\\Models");
+	fx->SetWorkPath("Data\\NTU4\\FXs");
+	BOOL beOK = fx->Load(filename);
+
+	return fx;
+}
 
 void loadAll( WORLDid gID )
 {
@@ -78,4 +93,6 @@ void loadAll( WORLDid gID )
 	AllAudio::se_select = gw.CreateAudio();
 	audio.Object(AllAudio::se_select);
 	audio.Load("se_select");
+
+	AllFx::gID = gID;
 }

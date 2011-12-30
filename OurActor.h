@@ -5,6 +5,8 @@
 class OurActor{
 public:
 	//var
+	WORLDid gID;
+	SCENEid sID;
 	FnActor actor;
 	ACTORid aID;
 	int HP_MAX;
@@ -26,6 +28,8 @@ public:
 	OurAction* getCurrentAction();
 	OurFrame* getKeyFrame();
 	float getCurrentFrame();
+
 	bool playActionAudio();
+	bool playActionFx();
 };
 #endif

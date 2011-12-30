@@ -18,9 +18,6 @@ public:
 
 class Lyubu : public OurActor{
 	private:
-		WORLDid gID;
-		SCENEid sID;
-
 		//new
 		//暫定紀錄最近5個按鍵
 		char pressed_key[5];

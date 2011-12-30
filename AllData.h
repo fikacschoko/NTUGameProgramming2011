@@ -1,6 +1,7 @@
 #ifndef _ALLDATA_H_
 #define _ALLDATA_H_
 #include "TheFlyWin32.h"
+#include "FyFx.h"
 
 class AllAudio
 {
@@ -19,6 +20,17 @@ public:
 	static AUDIOid s03_pose25;
 	static AUDIOid eat;
 	static AUDIOid se_select;
+};
+
+class AllFx
+{
+public:
+	static WORLDid gID;
+	static eF3DFX* getFX(char *filename, SCENEid sid);
+	static char* Attack01;
+	
+private:
+	
 };
 
 void loadAll( WORLDid gID );
