@@ -7,13 +7,12 @@ public:
 	//var
 	FnActor actor;
 	ACTORid aID;
-	int HP_MAX;
 	int HP;
 	
 	//method
 	OurActor();
 	virtual void damaged( int attack_pt, ACTORid attacker, float angle ) = 0;
-
+	
 	//action center
 	float current_frame;
 	OurAction* current_OurAction;

@@ -185,7 +185,6 @@ void Camera3rd::movement()
 		if(lyubu->sendAction(lyubu->ourRunAction))
 		{
 			result = lyubu->actor.MoveForward( MOVE_SPEED, TRUE, FALSE, 0.0f, TRUE);
-			//::actorChangePose( lyubu->aID, lyubu->ourRunAction->actID );
 			fronter.GetWorldDirection( fdir, udir );
 			lyubu->actor.SetWorldDirection( fdir, udir );
 
@@ -211,7 +210,6 @@ void Camera3rd::movement()
 	else if(FyCheckHotKeyStatus(FY_LEFT)){	
 		if(lyubu->sendAction(lyubu->ourRunAction))
 		{
-			//::actorChangePose( lyubu->aID, lyubu->ourRunAction->actID );
 			float pos[3];
 			fronter.GetWorldDirection( fdir, udir );
 			lyubu->actor.SetWorldDirection( fdir, udir );
@@ -226,7 +224,6 @@ void Camera3rd::movement()
 	else if (FyCheckHotKeyStatus(FY_RIGHT) ){
 		if(lyubu->sendAction(lyubu->ourRunAction))
 		{
-			//::actorChangePose( lyubu->aID, lyubu->ourRunAction->actID );
 			float pos[3];
 			fronter.GetWorldDirection( fdir, udir );
 			lyubu->actor.SetWorldDirection( fdir, udir );
@@ -241,8 +238,6 @@ void Camera3rd::movement()
 	else if (FyCheckHotKeyStatus(FY_DOWN)) {
 		if(lyubu->sendAction(lyubu->ourRunAction))
 		{
-			//::actorChangePose( lyubu->aID, lyubu->ourRunAction->actID );
-
 			float c2pos[3];
 			fronter.GetWorldDirection( fdir, udir );
 			lyubu->actor.SetWorldDirection( fdir, udir );

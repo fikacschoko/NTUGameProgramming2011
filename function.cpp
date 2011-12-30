@@ -70,6 +70,22 @@ float twoObjectDis( OBJECTid a, OBJECTid b )
 	return sqrt( x*x + y*y + z*z );
 }
 
+float twoActorDis( ACTORid a, ACTORid b )
+{
+	FnActor A, B;
+	float pos_a[3], pos_b[3], x, y, z;
+	
+	A.Object( a );
+	B.Object( b );
+	A.GetPosition( pos_a );
+	B.GetPosition( pos_b );
+	x = pos_a[0]-pos_b[0];
+	y = pos_a[1]-pos_b[1];
+	z = pos_a[2]-pos_b[2];
+
+	return sqrt( x*x + y*y + z*z );
+}
+
 float twoPointDis( float *a, float *b )
 {
 	float x = a[0]-b[0];
@@ -137,7 +153,9 @@ bool actorFaceTo( ACTORid aID, float x, float y, float z ){
 	face[0] = x-pos[0];
 	face[1] = y-pos[1];
 	face[2] = z-pos[2];
-	actor.SetWorldDirection(face,NULL);
+
+	float uDir[3] = {0,0,1};
+	actor.SetWorldDirection(face,uDir);
 
 	return true;
 }
