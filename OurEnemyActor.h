@@ -17,18 +17,19 @@ class OurEnemyActor : public OurActor{
 		bool justRun;
 		//method
 		OurEnemyActor();
-
+		virtual void AI(ACTORid enemy, ACTORid *friends, int friends_num, bool leader) = 0;
+		void walkingAgent(ACTORid enemy, ACTORid *friends, int friends_num, bool leader);
 		//blood
 		FnBillBoard blood;
 		OBJECTid bloodID;
-		virtual void AI(ACTORid enemy, ACTORid *friends, int friends_num, bool leader) = 0;
-		void walkingAgent(ACTORid enemy, ACTORid *friends, int friends_num, bool leader);
-	private:
-		void flockingPosition(float *newPos, float *selfPos, float *targetPos, ACTORid *groupMember, float groupMember_num);
 		float blood_length;
 		float blood_width;
 
 		void bloodAdjust();
+		
+	private:
+		void flockingPosition(float *newPos, float *selfPos, float *targetPos, ACTORid *groupMember, float groupMember_num);
+	
 };
 
 #endif
