@@ -1,16 +1,14 @@
 #include "robber02.h"
 #include "function.h"
 #include "OurActor.h"
-#include "OurAction.h" 
+#include "OurAction.h"
 extern float debug[6];
 Robber02::Robber02( WORLDid gID, SCENEid sID )
 {
 	FnWorld gw;
 	FnScene scene;
 
-	HP_MAX = 150;
-	HP = HP_MAX;
-
+	HP = 60;
 	pos_begin[0]=3550.0;
 	pos_begin[1]=-3216.0;
 	pos_begin[2]=1000.0f;
@@ -50,7 +48,28 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	ourRunAction->play_speed = 1;
 	ourRunAction->priority = 0;
 	ourRunAction->type.value = Action_type::ACTION_WALK();
+	//Attack
+	ourAttack1Action = new OurAction();
+	ourAttack1Action->actID = actor.GetBodyAction(NULL, "NormalAttack1");
+	ourAttack1Action->frames_num = 0;
+	ourAttack1Action->play_speed = 1;
+	ourAttack1Action->priority = 5;
+	ourAttack1Action->type.value = Action_type::ACTION_ATTACK();
 
+	ourAttack2Action = new OurAction();
+	ourAttack2Action->actID = actor.GetBodyAction(NULL, "NormalAttack2");
+	ourAttack2Action->frames_num = 0;
+	ourAttack2Action->play_speed = 1;
+	ourAttack2Action->priority = 6;
+	ourAttack2Action->type.value = Action_type::ACTION_ATTACK();
+
+	ourHAttackAction = new OurAction();
+	ourHAttackAction->actID = actor.GetBodyAction(NULL, "HeavyAttack1");
+	ourHAttackAction->frames_num = 0;
+	ourHAttackAction->play_speed = 1;
+	ourHAttackAction->priority = 7;
+	ourHAttackAction->type.value = Action_type::ACTION_ATTACK();
+	
 	//Damage1
 	ourDamage1Action = new OurAction();
 	ourDamage1Action->actID = actor.GetBodyAction(NULL, "Damage1");
@@ -96,16 +115,49 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	this->blood.Object(bloodID,0);
 }
 
-void Robber02::AI(ACTORid enemy, ACTORid *friends, int friends_num, bool leader)
+void Robber02::AI(ACTORid enemy, EnemyTeam **team,  int teamCount)
 {
-	walkingAgent(enemy, friends, friends_num, leader);
+	if(HP > 0)
+	{
+		detectEnemy(enemy);
+		if(!attackAgent(enemy))
+			walkingAgent(enemy, team, teamCount);
+	}
+}
+bool Robber02::attackAgent(ACTORid enemyID)
+{
+	float enemyPos[3];
+	FnActor enemy;
+	enemy.Object(enemyID);
+	enemy.GetPosition(enemyPos);
+	//¦Û¤v¦ì¸m
+	float selfPos[3];
+	FnActor self;
+	self.Object(aID);
+	self.GetPosition(selfPos);
+	if(twoActorDis(enemyID, aID) < COMBAT_DISTANCE)
+	{
+		if(rand()%100 < ATTACK_RATE/30)
+		{
+			int r = rand()%100;
+			if(r < 33)
+				sendAction(this->ourAttack1Action);
+			else if(r < 66)
+				sendAction(this->ourAttack2Action);
+			else
+				sendAction(this->ourHAttackAction);
+
+			return true;
+		}
+		else
+			return false;
+	}
+	else
+		return false;
 }
 void Robber02::damaged( int attack_pt, ACTORid attacker, float angle )
 {
 	HP -= attack_pt;
-
-	bloodAdjust();
-
 	if( HP <= 0 )
 	{
 		sendAction(ourDieAction);

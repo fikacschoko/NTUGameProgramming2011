@@ -7,6 +7,8 @@ bool beenHit( ACTORid  , ACTORid , OurFrame, float );
 
 float twoObjectDis( OBJECTid , OBJECTid );
 
+float twoActorDis( ACTORid , ACTORid );
+
 float twoPointDis( float*, float* );
 
 float posObjectDis( float* , OBJECTid );

@@ -23,7 +23,8 @@ class Donzo : public OurEnemyActor{
 
 		//method
 		Donzo( WORLDid , SCENEid );
-		void AI(ACTORid enemy, ACTORid *friends, int friends_num, bool leader);
+		void attackAgent(ACTORid enemyID);
+		void AI(ACTORid enemy, EnemyTeam **team,  int teamCount);
 		void damaged(int, ACTORid, float);
 };
 #endif
