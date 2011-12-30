@@ -1,7 +1,11 @@
 #include "OurAction.h"
 #include "OurActor.h"
 #include "function.h"
+<<<<<<< HEAD
+=======
+#include <exception>
 
+>>>>>>> 4415c441cf36f86950444a82127b35306fa9380d
 //OurActControl
 OurActor::OurActor()
 {

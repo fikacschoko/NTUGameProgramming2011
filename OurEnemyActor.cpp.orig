@@ -1,0 +1,177 @@
+#include "OurEnemyActor.h"
+<<<<<<< HEAD
+void OurEnemyActor::bloodAdjust()
+{
+	float size[2];
+	size[0] = blood_length*HP/HP_MAX;
+	size[1] = blood_width;
+	blood.SetSize(size);
+=======
+#include "function.h"
+const float awareDistance = 800;
+const float combatDistance = 300;
+const float crowdedDistance = 100;
+float speed = 5;
+
+OurEnemyActor::OurEnemyActor()
+{
+	justRun = false;
+}
+void OurEnemyActor::walkingAgent(ACTORid enemyID, ACTORid *groupMember, int groupMember_num, bool leader)
+{
+	float origin[3] = {0,0,0};
+	float enemyPos[3];
+	FnActor enemy;
+	enemy.Object(enemyID);
+	enemy.GetPosition(enemyPos);
+	float selfPos[3];
+	FnActor self;
+	self.Object(aID);
+	self.GetPosition(selfPos);
+
+	float distance = sqrt(pow(enemyPos[0]-selfPos[0],2)
+						 +pow(enemyPos[1]-selfPos[1],2)
+						 +pow(enemyPos[2]-selfPos[2],2));
+
+	float newPos[3];
+	flockingPosition(newPos, selfPos, enemyPos, groupMember, groupMember_num);
+	float flockingDis = sqrt(newPos[0]*newPos[0]
+					+newPos[1]*newPos[1]
+					+newPos[2]*newPos[2]);
+	float dis = twoPointDis(newPos, origin);
+
+	newPos[0] += selfPos[0];
+	newPos[1] += selfPos[1];
+	newPos[2] += selfPos[2];
+
+
+	//faceToTest
+	actorFaceTo(aID, newPos[0], newPos[1], newPos[2]);
+	actor.MoveForward(dis,true);
+	actorFaceTo(aID, enemyPos[0], enemyPos[1], enemyPos[2]);
+	//actor.SetPosition(newPos);
+
+	if(distance < awareDistance)
+	{
+		
+		if(distance <= combatDistance)
+		{
+			sendAction(ourCombatIdleAction);
+		}
+		else
+		{
+			sendAction(ourRunAction);
+			actor.MoveForward(speed, TRUE, FALSE, 0.0f, TRUE);
+		}
+	}
+	else
+	{
+		sendAction(ourIdleAction);
+	}
+}
+//計算在這個群體中適當的位置
+void OurEnemyActor::flockingPosition(float *newPos, float *selfPos, float *targetPos, ACTORid *groupMember, float groupMember_num)
+{
+	//separation & cohesion
+	float attraction[3] = {0,0,0};
+	for(int i = 0; i < groupMember_num; i++)
+	{
+		if(groupMember[i] != aID)
+		{
+			float friPos[3];
+			FnActor fri;
+			fri.Object(groupMember[i]);
+			fri.GetPosition(friPos);
+
+			float dis = sqrt(pow(friPos[0]-selfPos[0],2)
+							+pow(friPos[1]-selfPos[1],2)
+							+pow(friPos[2]-selfPos[2],2));
+			if(dis < crowdedDistance)
+			{
+				//separation
+				if(dis == 0)
+				{
+					attraction[0] += 1;
+					attraction[1] += 1;
+				}
+				else
+				{
+					attraction[0] += -(friPos[0]-selfPos[0])*pow(1-dis/crowdedDistance,2);
+					attraction[1] += -(friPos[1]-selfPos[1])*pow(1-dis/crowdedDistance,2);
+					attraction[2] += -(friPos[2]-selfPos[2])*pow(1-dis/crowdedDistance,2);
+				}
+			}
+			else
+			{
+				//cohesion
+				attraction[0] += (friPos[0]-selfPos[0])*pow((dis-crowdedDistance)/(awareDistance-crowdedDistance),2);
+				attraction[1] += (friPos[1]-selfPos[1])*pow((dis-crowdedDistance)/(awareDistance-crowdedDistance),2);
+				attraction[2] += (friPos[2]-selfPos[2])*pow((dis-crowdedDistance)/(awareDistance-crowdedDistance),2);
+			}
+		}
+	}
+	attraction[0] /= (groupMember_num-1);
+	attraction[1] /= (groupMember_num-1);
+	attraction[2] /= (groupMember_num-1);
+
+	/*
+	//cohesion
+	float sum[3] = {0,0,0};
+	for(int i = 0; i < groupMember_num; i++)
+	{
+		if(groupMember[i] != aID)
+		{
+			float friPos[3];
+			FnActor fri;
+			fri.Object(groupMember[i]);
+			fri.GetPosition(friPos);
+
+			sum[0] += friPos[0];
+			sum[1] += friPos[1];
+			sum[2] += friPos[2];
+		}
+	}
+	float avg[3] = {sum[0]/(groupMember_num-1),
+					sum[1]/(groupMember_num-1),
+					sum[2]/(groupMember_num-1)};
+	float avgDis = sqrt((avg[0]-selfPos[0])*(avg[0]-selfPos[0])+
+						(avg[1]-selfPos[1])*(avg[1]-selfPos[1])+
+						(avg[2]-selfPos[2])*(avg[2]-selfPos[2]));
+
+	float cohesion[3] = {(avg[0]-selfPos[0])*pow((avgDis-crowdedDistance)/(awareDistance-crowdedDistance),2),
+						 (avg[1]-selfPos[1])*pow((avgDis-crowdedDistance)/(awareDistance-crowdedDistance),2),
+						 (avg[2]-selfPos[2])*pow((avgDis-crowdedDistance)/(awareDistance-crowdedDistance),2)};
+						 */
+
+	//align
+	float sumV[3] = {0,0,0};
+	for(int i = 0; i < groupMember_num; i++)
+	{
+		if(groupMember[i] != aID)
+		{
+			float friPos[3];
+			FnActor fri;
+			fri.Object(groupMember[i]);
+			fri.GetPosition(friPos);
+
+			float vx = (targetPos[0]-friPos[0]);
+			float vy = (targetPos[1]-friPos[1]);
+			float vz = (targetPos[2]-friPos[2]);
+			float dis = sqrt(sumV[0]*sumV[0]+sumV[1]*sumV[1]+sumV[2]*sumV[2]);
+			if(dis != 0)
+			{
+				sumV[0] += vx/dis;
+				sumV[1] += vy/dis;
+				sumV[2] += vz/dis;
+			}
+		}
+	}
+	float align[3] = {sumV[0]/(groupMember_num-1),
+					  sumV[1]/(groupMember_num-1),
+					  sumV[2]/(groupMember_num-1)};
+
+	newPos[0] = attraction[0]+align[0];
+	newPos[1] = attraction[1]+align[1];
+	newPos[2] = attraction[2]+align[2];
+>>>>>>> github/master
+}
