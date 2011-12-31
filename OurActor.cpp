@@ -103,14 +103,26 @@ bool OurActor::playActionFx()
 				
 					current_OurAction->fxFrames[i]->fx = AllFx::getFX(current_OurAction->fxFrames[i]->fxName, sID);
 
+
 					eF3DBaseFX *fx_sub;
 					float pos[3];
 					actor.GetWorldPosition(pos);
-					pos[2] = 50;
+					pos[2] = 0;
 					int numFX = current_OurAction->fxFrames[i]->fx->NumberFXs();
 					for (int i = 0; i < numFX; i++) {
 						fx_sub = current_OurAction->fxFrames[i]->fx->GetFX(i);
-						fx_sub->InitPosition(pos);
+						char *parent_name = fx_sub->GetParentName();
+						OBJECTid oid = actor.GetBoneObject( parent_name );
+						if( oid != FAILED_ID )
+						{
+							fx_sub->SetParent( oid );
+							//pos[0] = pos[1] = pos[2] = 0;
+							//fx_sub->InitPosition(pos);
+						}
+						else
+						{
+							fx_sub->InitPosition(pos);
+						}
 					}
 
 					FXcenter::playFX( current_OurAction->fxFrames[i]->fx );
