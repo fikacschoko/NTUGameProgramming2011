@@ -1,11 +1,8 @@
 #include "OurAction.h"
 #include "OurActor.h"
 #include "function.h"
-<<<<<<< HEAD
-=======
-#include <exception>
+#include "AllData.h"
 
->>>>>>> 4415c441cf36f86950444a82127b35306fa9380d
 //OurActControl
 OurActor::OurActor()
 {
@@ -31,7 +28,7 @@ void OurActor::ourPlayAction()
 	else
 	{
 		bool notOver;
-		notOver = actor.Play(0, ONCE, current_OurAction->play_speed, false, true);
+		notOver = actor.Play(0, ONCE, current_OurAction->play_speed, FALSE, TRUE);
 		if( !notOver )
 		{
 			if( current_OurAction->type.value != Action_type::ACTION_DIE() )
@@ -42,6 +39,7 @@ void OurActor::ourPlayAction()
 	}
 
 	playActionAudio();
+	playActionFx();
 }
 
 bool OurActor::sendAction( OurAction* action )
@@ -88,6 +86,54 @@ bool OurActor::playActionAudio()
 					audio.Object(current_OurAction->audioFrames[i]->audioID);
 					audio.Play(ONCE);
 					return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool OurActor::playActionFx()
+{
+	if( current_OurAction->numOfFxFrames > 0 )
+	{
+		for( int i=0 ; i<current_OurAction->numOfFxFrames ; i++ )
+		{
+			if( current_OurAction->fxFrames[i]->frameNO <= current_frame && 
+				current_OurAction->fxFrames[i]->frameNO >= current_frame - current_OurAction->play_speed ){
+				
+					current_OurAction->fxFrames[i]->fx = AllFx::getFX(current_OurAction->fxFrames[i]->fxName, sID);
+
+
+					eF3DBaseFX *fx_sub;
+					float pos[3];
+					actor.GetWorldPosition(pos);
+					pos[2] = 0;
+					int numFX = current_OurAction->fxFrames[i]->fx->NumberFXs();
+<<<<<<< HEAD
+					for (int j = 0; j < numFX; j++) {
+						fx_sub = current_OurAction->fxFrames[i]->fx->GetFX(j);
+						if( fx_sub == NULL )
+							continue;
+=======
+					int i;
+					for (i = 0; i < numFX; i++) {
+						fx_sub = current_OurAction->fxFrames[i]->fx->GetFX(i);
+>>>>>>> 63f243b55a9d990735744088e5291726fd726119
+						char *parent_name = fx_sub->GetParentName();
+						OBJECTid oid = actor.GetBoneObject( parent_name );
+						if( oid != FAILED_ID )
+						{
+							fx_sub->SetParent( oid );
+							//pos[0] = pos[1] = pos[2] = 0;
+							//fx_sub->InitPosition(pos);
+						}
+						else
+						{
+							fx_sub->InitPosition(pos);
+						}
+					}
+
+					FXcenter::playFX( current_OurAction->fxFrames[i]->fx );
 			}
 		}
 	}

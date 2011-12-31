@@ -125,6 +125,11 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	ourDamage2Action->fxFrames[0] = new OurFxFrame;
 	ourDamage2Action->fxFrames[0]->frameNO = 1;
 	ourDamage2Action->fxFrames[0]->fxName = AllFx::BigHurt01;
+	ourDamage2Action->numOfAudioFrames = 1;
+	ourDamage2Action->audioFrames = new OurAudioFrame*[2];
+	ourDamage2Action->audioFrames[0] = new OurAudioFrame;
+	ourDamage2Action->audioFrames[0]->frameNO = 0;
+	ourDamage2Action->audioFrames[0]->audioID = AllAudio::s03_pose18;
 
 
 	//Die
@@ -134,6 +139,11 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	ourDieAction->play_speed = 1;
 	ourDieAction->priority = 100;
 	ourDieAction->type.value = Action_type::ACTION_DIE();
+	ourDieAction->numOfAudioFrames = 1;
+	ourDieAction->audioFrames = new OurAudioFrame*[2];
+	ourDieAction->audioFrames[0] = new OurAudioFrame;
+	ourDieAction->audioFrames[0]->frameNO = 0;
+	ourDieAction->audioFrames[0]->audioID = AllAudio::s03_pose25;
 
 	//blood
 	{
