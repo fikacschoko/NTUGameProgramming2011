@@ -9,6 +9,7 @@ public:
 	SCENEid sID;
 	FnActor actor;
 	ACTORid aID;
+	int HP_MAX;
 	int HP;
 	
 	//method

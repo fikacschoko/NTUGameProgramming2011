@@ -83,11 +83,14 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack1Action->audioFrames[1]->frameNO = 10;
 	ourAttack1Action->audioFrames[1]->audioID = AllAudio::eat;
 	//fx
-	ourAttack1Action->numOfFxFrames = 1;
-	ourAttack1Action->fxFrames = new OurFxFrame*[1];
+	ourAttack1Action->numOfFxFrames = 2;
+	ourAttack1Action->fxFrames = new OurFxFrame*[2];
 	ourAttack1Action->fxFrames[0] = new OurFxFrame;
-	ourAttack1Action->fxFrames[0]->frameNO = 5;
+	ourAttack1Action->fxFrames[0]->frameNO = 1;
 	ourAttack1Action->fxFrames[0]->fxName = AllFx::Attack01;
+	ourAttack1Action->fxFrames[1] = new OurFxFrame;
+	ourAttack1Action->fxFrames[1]->frameNO = 10;
+	ourAttack1Action->fxFrames[1]->fxName = AllFx::Attack01;
 
 	ourAttack2Action = new OurAction();
 	ourAttack2Action->actID = actor.GetBodyAction(NULL, "NormalAttack2");

@@ -8,7 +8,9 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	FnWorld gw;
 	FnScene scene;
 
-	HP = 60;
+	HP_MAX = 150;
+	HP = HP_MAX;
+
 	pos_begin[0]=3550.0;
 	pos_begin[1]=-3216.0;
 	pos_begin[2]=1000.0f;
@@ -158,6 +160,9 @@ bool Robber02::attackAgent(ACTORid enemyID)
 void Robber02::damaged( int attack_pt, ACTORid attacker, float angle )
 {
 	HP -= attack_pt;
+
+	bloodAdjust();
+
 	if( HP <= 0 )
 	{
 		sendAction(ourDieAction);

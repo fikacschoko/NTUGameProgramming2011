@@ -103,30 +103,17 @@ bool OurActor::playActionFx()
 				
 					current_OurAction->fxFrames[i]->fx = AllFx::getFX(current_OurAction->fxFrames[i]->fxName, sID);
 
-					   eF3DBaseFX *fx_sub;
-					   float pos[3];
-					   actor.GetWorldPosition(pos);
-					   pos[2] = 50;
-						int numFX = current_OurAction->fxFrames[i]->fx->NumberFXs();
-						for (int i = 0; i < numFX; i++) {
-						  fx_sub = current_OurAction->fxFrames[i]->fx->GetFX(i);
-						  fx_sub->InitPosition(pos);
-						}
-
-					current_OurAction->fxFrames[i]->fx->Play(5);
-
-			}
-			else if(  current_OurAction->fxFrames[i]->frameNO < current_frame )
-			{
-				if( current_OurAction->fxFrames[i]->fx != NULL )
-				{
-					bool beOK = current_OurAction->fxFrames[i]->fx->Play(5);
-					if( !beOK )
-					{
-						delete current_OurAction->fxFrames[i]->fx;
-						current_OurAction->fxFrames[i]->fx = NULL;
+					eF3DBaseFX *fx_sub;
+					float pos[3];
+					actor.GetWorldPosition(pos);
+					pos[2] = 50;
+					int numFX = current_OurAction->fxFrames[i]->fx->NumberFXs();
+					for (int i = 0; i < numFX; i++) {
+						fx_sub = current_OurAction->fxFrames[i]->fx->GetFX(i);
+						fx_sub->InitPosition(pos);
 					}
-				}
+
+					FXcenter::playFX( current_OurAction->fxFrames[i]->fx );
 			}
 		}
 	}

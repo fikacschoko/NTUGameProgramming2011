@@ -39,6 +39,8 @@ class OurEnemyActor : public OurActor{
 		void detectEnemy(ACTORid enemy);
 		void walkingAgent(ACTORid enemy, EnemyTeam **team, int teamCount);
 		void attackAgent();
+		//blood
+		FnBillBoard blood;
 		OBJECTid bloodID;
 		float blood_length;
 		float blood_width;
