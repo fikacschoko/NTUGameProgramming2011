@@ -69,7 +69,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack1Action->actID = actor.GetBodyAction(NULL, "NormalAttack1");
 	ourAttack1Action->isAttack = true;
 	ourAttack1Action->frames_num = 0;
-	ourAttack1Action->play_speed = 1;
+	ourAttack1Action->play_speed = 1.5;
 	ourAttack1Action->priority = 5;
 	ourAttack1Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK1();
 	ourAttack1Action->combo_able_frame_start = 10;
@@ -103,7 +103,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack2Action->actID = actor.GetBodyAction(NULL, "NormalAttack2");
 	ourAttack2Action->isAttack = true;
 	ourAttack2Action->frames_num = 0;
-	ourAttack2Action->play_speed = 0.8;
+	ourAttack2Action->play_speed = 1.2;
 	ourAttack2Action->priority = 6;
 	ourAttack2Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK2();
 	ourAttack2Action->combo_able_frame_start = 15;
@@ -139,7 +139,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack3Action->actID = actor.GetBodyAction(NULL, "NormalAttack3");
 	ourAttack3Action->isAttack = true;
 	ourAttack3Action->frames_num = 0;
-	ourAttack3Action->play_speed = 0.8;
+	ourAttack3Action->play_speed = 1.2;
 	ourAttack3Action->priority = 7;
 	ourAttack3Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK3();
 	ourAttack3Action->combo_able_frame_start = 25;
@@ -157,7 +157,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack4Action->actID = actor.GetBodyAction(NULL, "NormalAttack4");
 	ourAttack4Action->isAttack = true;
 	ourAttack4Action->frames_num = 0;
-	ourAttack4Action->play_speed = 0.8;
+	ourAttack4Action->play_speed = 1.2;
 	ourAttack4Action->priority = 8;
 	ourAttack4Action->type.value = LyubuAction::ACTION_NORMAL_ATTACK4();
 	ourAttack4Action->combo_able_frame_start = 25;
@@ -199,7 +199,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourHeavyAttack2Action->actID = actor.GetBodyAction(NULL, "HeavyAttack2");
 	ourHeavyAttack2Action->isAttack = true;
 	ourHeavyAttack2Action->frames_num = 72;
-	ourHeavyAttack2Action->play_speed = 1;
+	ourHeavyAttack2Action->play_speed = 1.2;
 	ourHeavyAttack2Action->priority = ourAttack2Action->priority + 10;
 	ourHeavyAttack2Action->type.value = LyubuAction::ACTION_HEAVY_ATTACK2();
 	ourHeavyAttack2Action->combo_able_frame_start = 22;
@@ -217,7 +217,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourHeavyAttack3Action->actID = actor.GetBodyAction(NULL, "HeavyAttack3");
 	ourHeavyAttack3Action->isAttack = true;
 	ourHeavyAttack3Action->frames_num = 72;
-	ourHeavyAttack3Action->play_speed = 1;
+	ourHeavyAttack3Action->play_speed = 1.2;
 	ourHeavyAttack3Action->priority = ourAttack3Action->priority + 10;
 	ourHeavyAttack3Action->type.value = LyubuAction::ACTION_HEAVY_ATTACK3();
 	ourHeavyAttack3Action->combo_able_frame_start = 24;

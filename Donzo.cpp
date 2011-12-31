@@ -157,7 +157,7 @@ Donzo::Donzo( WORLDid gID, SCENEid sID )
 	ourDieAction->fxFrames = new OurFxFrame*[1];
 	ourDieAction->fxFrames[0] = new OurFxFrame;
 	ourDieAction->fxFrames[0]->frameNO = 1;
-	ourDieAction->fxFrames[0]->fxName = AllFx::blood2;
+	ourDieAction->fxFrames[0]->fxName = AllFx::smoke;
 
 	//blood
 	{
