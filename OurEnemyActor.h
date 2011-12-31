@@ -6,7 +6,7 @@
 #define AWARE_DISTANCE 500
 #define COMBAT_DISTANCE 150
 #define CROWDED_DISTANCE 80
-#define OVERLAP_DISTANCE 30
+#define OVERLAP_DISTANCE 50
 #define SPEED 5
 
 class OurEnemyActor;

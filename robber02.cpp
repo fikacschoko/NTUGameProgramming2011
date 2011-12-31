@@ -3,6 +3,8 @@
 #include "OurActor.h"
 #include "OurAction.h"
 extern float debug[6];
+
+const float Robber02::ATTACK_RATE = 0.1f;
 Robber02::Robber02( WORLDid gID, SCENEid sID )
 {
 	FnWorld gw;
@@ -168,18 +170,9 @@ void Robber02::AI(ACTORid enemy, EnemyTeam **team,  int teamCount)
 }
 bool Robber02::attackAgent(ACTORid enemyID)
 {
-	float enemyPos[3];
-	FnActor enemy;
-	enemy.Object(enemyID);
-	enemy.GetPosition(enemyPos);
-	//¦Û¤v¦ì¸m
-	float selfPos[3];
-	FnActor self;
-	self.Object(aID);
-	self.GetPosition(selfPos);
 	if(twoActorDis(enemyID, aID) < COMBAT_DISTANCE)
 	{
-		if(rand()%100 < ATTACK_RATE/30)
+		if(rand()%10000 < Robber02::ATTACK_RATE*10000/30)
 		{
 			int r = rand()%100;
 			if(r < 33)
