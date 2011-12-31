@@ -2,6 +2,7 @@
 #define _Robber02_H_
 #include "TheFlyWin32.h"
 #include "OurEnemyActor.h"
+#include "AllData.h"
 #define PI 3.14159265
 
 #define ATTACK_RATE 10.0

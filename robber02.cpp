@@ -8,7 +8,7 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	FnWorld gw;
 	FnScene scene;
 
-	HP_MAX = 150;
+	HP_MAX = 450;
 	HP = HP_MAX;
 
 	pos_begin[0]=3550.0;
@@ -106,6 +106,12 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	ourDamage1Action->play_speed = 1;
 	ourDamage1Action->priority = 100;
 	ourDamage1Action->type.value = Action_type::ACTION_DAMAGED();
+	ourDamage1Action->numOfFxFrames = 1;
+	ourDamage1Action->fxFrames = new OurFxFrame*[1];
+	ourDamage1Action->fxFrames[0] = new OurFxFrame;
+	ourDamage1Action->fxFrames[0]->frameNO = 1;
+	ourDamage1Action->fxFrames[0]->fxName = AllFx::SmallHurt01;
+
 	//Damage2
 	ourDamage2Action = new OurAction();
 	ourDamage2Action->actID = actor.GetBodyAction(NULL, "Damage2");
@@ -113,6 +119,13 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	ourDamage2Action->play_speed = 1;
 	ourDamage2Action->priority = 100;
 	ourDamage2Action->type.value = Action_type::ACTION_DAMAGED();
+	ourDamage2Action->numOfFxFrames = 1;
+	ourDamage2Action->fxFrames = new OurFxFrame*[1];
+	ourDamage2Action->fxFrames[0] = new OurFxFrame;
+	ourDamage2Action->fxFrames[0]->frameNO = 1;
+	ourDamage2Action->fxFrames[0]->fxName = AllFx::BigHurt01;
+
+
 	//Die
 	ourDieAction = new OurAction();
 	ourDieAction->actID = actor.GetBodyAction(NULL, "Dead");

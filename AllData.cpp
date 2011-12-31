@@ -18,7 +18,19 @@ AUDIOid AllAudio::se_select = 0;
 
 //FX
 char* AllFx::Attack01 = "Attack01";
-char* AllFx::orz = "orz";
+char* AllFx::LyubuWeapon1 = "LyubuWeapon1";
+char* AllFx::SmallHurt01 = "SmallHurt01";
+char* AllFx::BigHurt01 = "BigHurt01";
+char* AllFx::BigHurt02 = "BigHurt02";
+char* AllFx::WeaponDefense01 = "WeaponDefense01";
+char* AllFx::WeaponSmoke = "WeaponSmoke";
+char* AllFx::Eatneck = "Eatneck";
+char* AllFx::MagicMode01 = "MagicMode01";
+char* AllFx::MagicMode02 = "MagicMode02";
+char* AllFx::smoke = "smoke";
+char* AllFx::smoke1 = "smoke1";
+char* AllFx::WeaponThounder = "WeaponThounder";
+char* AllFx::blood2 = "blood2";
 WORLDid AllFx::gID = 0;
 
 eF3DFX* AllFx::getFX(char*filename, SCENEid sID){

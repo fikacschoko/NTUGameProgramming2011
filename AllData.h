@@ -30,7 +30,19 @@ public:
 	static WORLDid gID;
 	static eF3DFX* getFX(char *filename, SCENEid sid);
 	static char* Attack01;
-	static char* orz;
+	static char* LyubuWeapon1;
+	static char* SmallHurt01;
+	static char* BigHurt01;
+	static char* BigHurt02;
+	static char* WeaponDefense01;
+	static char* WeaponSmoke;
+	static char* Eatneck;
+	static char* MagicMode01;
+	static char* MagicMode02;
+	static char* smoke;
+	static char* smoke1;
+	static char* WeaponThounder;
+	static char* blood2;
 private:
 	
 };
@@ -39,7 +51,7 @@ class FXcenter
 {
 public:
 	//var
-	static const int QUEUE_MAX = 100;
+	static const int QUEUE_MAX = 1000;
 	static eF3DFX **queue;
 	static int queue_start, queue_end;
 	//method

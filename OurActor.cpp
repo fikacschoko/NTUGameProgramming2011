@@ -28,7 +28,7 @@ void OurActor::ourPlayAction()
 	else
 	{
 		bool notOver;
-		notOver = actor.Play(0, ONCE, current_OurAction->play_speed, false, true);
+		notOver = actor.Play(0, ONCE, current_OurAction->play_speed, FALSE, TRUE);
 		if( !notOver )
 		{
 			if( current_OurAction->type.value != Action_type::ACTION_DIE() )
@@ -109,8 +109,10 @@ bool OurActor::playActionFx()
 					actor.GetWorldPosition(pos);
 					pos[2] = 0;
 					int numFX = current_OurAction->fxFrames[i]->fx->NumberFXs();
-					for (int i = 0; i < numFX; i++) {
-						fx_sub = current_OurAction->fxFrames[i]->fx->GetFX(i);
+					for (int j = 0; j < numFX; j++) {
+						fx_sub = current_OurAction->fxFrames[i]->fx->GetFX(j);
+						if( fx_sub == NULL )
+							continue;
 						char *parent_name = fx_sub->GetParentName();
 						OBJECTid oid = actor.GetBoneObject( parent_name );
 						if( oid != FAILED_ID )

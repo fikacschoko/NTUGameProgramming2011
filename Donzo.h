@@ -4,6 +4,7 @@
 #include "OurEnemyActor.h"
 #include "OurActor.h"
 #include "OurAction.h"
+#include "AllData.h"
 #define PI 3.14159265
 
 class DonzoAction : public Action_type
