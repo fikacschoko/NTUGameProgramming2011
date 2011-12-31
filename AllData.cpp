@@ -1,5 +1,6 @@
 #include "AllData.h"
 
+//AUDIO
 AUDIOid AllAudio::s01_pose05 = 0;
 AUDIOid AllAudio::s01_pose07 = 0;
 AUDIOid AllAudio::s01_pose12 = 0;
@@ -15,6 +16,7 @@ AUDIOid AllAudio::s03_pose25 = 0;
 AUDIOid AllAudio::eat = 0;
 AUDIOid AllAudio::se_select = 0;
 
+//FX
 char* AllFx::Attack01 = "Attack01";
 WORLDid AllFx::gID = 0;
 
@@ -31,6 +33,56 @@ eF3DFX* AllFx::getFX(char*filename, SCENEid sID){
 	return fx;
 }
 
+//FXcenter
+int FXcenter::queue_start = 0;
+int FXcenter::queue_end = 0;
+eF3DFX** FXcenter::queue = NULL;
+void FXcenter::initial()
+{
+	queue_start = 0;
+	queue_end = 0;
+	queue = new eF3DFX*[QUEUE_MAX];
+	for( int i=0 ; i<QUEUE_MAX ; i++ )
+	{
+		queue[i] = NULL;
+	}
+	
+}
+void FXcenter::playFX( eF3DFX* fx )
+{
+	if( queue[queue_end] != NULL )
+		return;
+	queue[queue_end] = fx;
+	queue_end = (queue_end+1) % QUEUE_MAX;
+}
+
+void FXcenter::playAllFX( float skip )
+{
+	if( queue_start == queue_end && queue[queue_end]==NULL )
+		return;
+
+	bool beOK;
+	eF3DFX *tmp;
+
+	if( queue_start < queue_end )
+	{
+		for( int i=queue_start ; i<queue_end ; i++ )
+		{
+			beOK = queue[i]->Play(skip);
+			if( !beOK )
+			{
+				delete queue[i];
+				queue[i] = queue[queue_end];
+				queue[queue_end] = NULL;
+				queue_end--;
+				i--;
+			}
+		}
+	}
+}
+
+
+//method
 void loadAll( WORLDid gID )
 {
 	FnWorld gw;
@@ -95,4 +147,6 @@ void loadAll( WORLDid gID )
 	audio.Load("se_select");
 
 	AllFx::gID = gID;
+
+	FXcenter::initial();
 }

@@ -3,6 +3,8 @@
 #include "TheFlyWin32.h"
 #include "FyFx.h"
 
+void loadAll( WORLDid gID );
+
 class AllAudio
 {
 public:
@@ -33,5 +35,18 @@ private:
 	
 };
 
-void loadAll( WORLDid gID );
+class FXcenter
+{
+public:
+	//var
+	static const int QUEUE_MAX = 100;
+	static eF3DFX **queue;
+	static int queue_start, queue_end;
+	//method
+	static void initial();
+	static void playFX( eF3DFX* fx );
+	static void playAllFX( float skip );
+};
+
+
 #endif
