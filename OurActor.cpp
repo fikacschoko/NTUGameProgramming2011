@@ -22,8 +22,15 @@ void OurActor::ourPlayAction()
 	if( current_OurAction->type == Action_type::ACTION_IDLE() ||
 		current_OurAction->type == Action_type::ACTION_WALK() )
 	{
-		actor.Play(0, LOOP, current_OurAction->play_speed, false, true);
-		current_frame += current_OurAction->play_speed;
+		bool notOver;
+		notOver = actor.Play(0, ONCE, current_OurAction->play_speed, false, true);
+		if( notOver )
+			current_frame += current_OurAction->play_speed;
+		else
+		{
+			current_frame = 0;
+			actor.MakeCurrentAction(0, NULL, current_OurAction->actID);
+		}
 	}
 	else
 	{
