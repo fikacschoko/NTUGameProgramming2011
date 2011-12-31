@@ -58,6 +58,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourRunAction->play_speed = 1;
 	ourRunAction->priority = 0;
 	ourRunAction->type.value = LyubuAction::ACTION_WALK();
+	//sound
 	ourRunAction->numOfAudioFrames = 1;
 	ourRunAction->audioFrames = new OurAudioFrame*[1];
 	ourRunAction->audioFrames[0] = new OurAudioFrame;
@@ -243,6 +244,14 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourLeftDamagedAction->play_speed = 1;
 	ourLeftDamagedAction->priority = 100;
 	ourLeftDamagedAction->type.value = LyubuAction::ACTION_DAMAGED();
+	ourLeftDamagedAction->numOfAudioFrames = 1;
+	ourLeftDamagedAction->audioFrames = new OurAudioFrame*[2];
+	ourLeftDamagedAction->audioFrames[0] = new OurAudioFrame;
+	ourLeftDamagedAction->audioFrames[0]->frameNO = 0;
+	ourLeftDamagedAction->audioFrames[0]->audioID = AllAudio::s03_pose18;
+	//ourLeftDamagedAction->audioFrames[1] = new OurAudioFrame;
+	//ourLeftDamagedAction->audioFrames[1]->frameNO = 10;
+	//ourLeftDamagedAction->audioFrames[1]->audioID = AllAudio::eat;
 
 	ourRightDamagedAction = new OurAction();
 	ourRightDamagedAction->actID = actor.GetBodyAction(NULL, "RightDamaged");
@@ -257,6 +266,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourDieAction->play_speed = 1;
 	ourDieAction->priority = 1000;
 	ourDieAction->type.value = LyubuAction::ACTION_DIE();
+	
 
 	actor.MakeCurrentAction(0, NULL, ourIdleAction->actID);
 }
