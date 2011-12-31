@@ -109,7 +109,8 @@ bool OurActor::playActionFx()
 					actor.GetWorldPosition(pos);
 					pos[2] = 0;
 					int numFX = current_OurAction->fxFrames[i]->fx->NumberFXs();
-					for (int i = 0; i < numFX; i++) {
+					int i;
+					for (i = 0; i < numFX; i++) {
 						fx_sub = current_OurAction->fxFrames[i]->fx->GetFX(i);
 						char *parent_name = fx_sub->GetParentName();
 						OBJECTid oid = actor.GetBoneObject( parent_name );

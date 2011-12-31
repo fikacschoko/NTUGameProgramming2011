@@ -130,6 +130,29 @@ void OurEnemyActor::flockingPosition(float *newPos, float *selfPos, float *targe
 			}
 		}
 	}
+
+	//若與呂布重疊就分離
+	float dis = sqrt(pow(targetPos[0]-selfPos[0],2)
+			+pow(targetPos[1]-selfPos[1],2)
+			+pow(targetPos[2]-selfPos[2],2));
+
+	if(dis < OVERLAP_DISTANCE)
+	{
+		//separation
+		if(dis == 0)
+		{
+			attraction[0] += 1;
+			attraction[1] += 1;
+		}
+		else
+		{
+			attraction[0] += -(targetPos[0]-selfPos[0])*pow(1-dis/CROWDED_DISTANCE,2);
+			attraction[1] += -(targetPos[1]-selfPos[1])*pow(1-dis/CROWDED_DISTANCE,2);
+			attraction[2] += -(targetPos[2]-selfPos[2])*pow(1-dis/CROWDED_DISTANCE,2);
+		}
+		member_num++;
+	}
+
 	if(member_num > 0)
 	{
 		attraction[0] /= member_num;

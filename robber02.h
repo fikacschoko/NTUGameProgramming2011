@@ -4,8 +4,6 @@
 #include "OurEnemyActor.h"
 #define PI 3.14159265
 
-#define ATTACK_RATE 10.0
-
 class Robber02Action : public Action_type
 {
 	public:
@@ -15,6 +13,7 @@ class Robber02Action : public Action_type
 
 class Robber02 : public OurEnemyActor{
 	public:
+		static const float ATTACK_RATE;
 		//var
 		float pos_begin[3];
 		OurAction	*ourAttack1Action,

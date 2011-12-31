@@ -63,7 +63,7 @@ void FXcenter::playAllFX( float skip )
 		return;
 
 	bool beOK;
-	eF3DFX *tmp;
+//	eF3DFX *tmp;
 
 	if( queue_start < queue_end )
 	{
