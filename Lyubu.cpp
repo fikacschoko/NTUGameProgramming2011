@@ -112,7 +112,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack2Action->keyFrames = new OurFrame*[2];
 	ourAttack2Action->keyFrames[0] = new OurFrame;
 	ourAttack2Action->keyFrames[0]->frameNO = 22;
-	ourAttack2Action->keyFrames[0]->start_angle = 1350;
+	ourAttack2Action->keyFrames[0]->start_angle = 135;
 	ourAttack2Action->keyFrames[0]->plus_angle = 270;
 	ourAttack2Action->keyFrames[0]->valid_dis = 250;
 	ourAttack2Action->keyFrames[0]->damage_pt = 40;
@@ -148,7 +148,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourAttack3Action->keyFrames = new OurFrame*[1];
 	ourAttack3Action->keyFrames[0] = new OurFrame;
 	ourAttack3Action->keyFrames[0]->frameNO = 23;
-	ourAttack3Action->keyFrames[0]->start_angle = 90;
+	ourAttack3Action->keyFrames[0]->start_angle = 270;
 	ourAttack3Action->keyFrames[0]->plus_angle = 270;
 	ourAttack3Action->keyFrames[0]->valid_dis = 250;
 	ourAttack3Action->keyFrames[0]->damage_pt = 40;
@@ -186,13 +186,13 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourHeavyAttack1Action->keyFrames[0]->frameNO = 21;
 	ourHeavyAttack1Action->keyFrames[0]->start_angle = 0;
 	ourHeavyAttack1Action->keyFrames[0]->plus_angle = 100;
-	ourHeavyAttack1Action->keyFrames[0]->valid_dis = 100;
+	ourHeavyAttack1Action->keyFrames[0]->valid_dis = 200;
 	ourHeavyAttack1Action->keyFrames[0]->damage_pt = 70;
 	ourHeavyAttack1Action->keyFrames[1] = new OurFrame;
 	ourHeavyAttack1Action->keyFrames[1]->frameNO = 40;
 	ourHeavyAttack1Action->keyFrames[1]->start_angle = 320;
 	ourHeavyAttack1Action->keyFrames[1]->plus_angle = 80;
-	ourHeavyAttack1Action->keyFrames[1]->valid_dis = 160;
+	ourHeavyAttack1Action->keyFrames[1]->valid_dis = 260;
 	ourHeavyAttack1Action->keyFrames[1]->damage_pt = 80;
 
 	ourHeavyAttack2Action = new OurAction();
@@ -210,7 +210,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourHeavyAttack2Action->keyFrames[0]->frameNO = 22;
 	ourHeavyAttack2Action->keyFrames[0]->start_angle = 0;
 	ourHeavyAttack2Action->keyFrames[0]->plus_angle = 180;
-	ourHeavyAttack2Action->keyFrames[0]->valid_dis = 120;
+	ourHeavyAttack2Action->keyFrames[0]->valid_dis = 220;
 	ourHeavyAttack2Action->keyFrames[0]->damage_pt = 60;
 
 	ourHeavyAttack3Action = new OurAction();
@@ -228,7 +228,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourHeavyAttack3Action->keyFrames[0]->frameNO = 24;
 	ourHeavyAttack3Action->keyFrames[0]->start_angle = 30;
 	ourHeavyAttack3Action->keyFrames[0]->plus_angle = 180;
-	ourHeavyAttack3Action->keyFrames[0]->valid_dis = 90;
+	ourHeavyAttack3Action->keyFrames[0]->valid_dis = 20;
 	ourHeavyAttack3Action->keyFrames[0]->damage_pt = 60;
 	//Damaged
 	ourHeavyDamagedAction = new OurAction();

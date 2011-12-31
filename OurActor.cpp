@@ -54,6 +54,11 @@ bool OurActor::sendAction( OurAction* action )
 	if( action->priority < current_OurAction->priority )
 		return false;
 	current_OurAction = action;
+	if( action->type == Action_type::ACTION_DAMAGED() )
+	{
+		current_frame = 0;
+		actor.MakeCurrentAction(0, NULL, current_OurAction->actID);
+	}
 	return true;
 }
 

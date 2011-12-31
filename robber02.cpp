@@ -4,13 +4,13 @@
 #include "OurAction.h"
 extern float debug[6];
 
-const float Robber02::ATTACK_RATE = 0.1f;
+const float Robber02::ATTACK_RATE = 0.01f;
 Robber02::Robber02( WORLDid gID, SCENEid sID )
 {
 	FnWorld gw;
 	FnScene scene;
 
-	HP_MAX = 450;
+	HP_MAX = 4500;
 	HP = HP_MAX;
 
 	pos_begin[0]=3550.0;

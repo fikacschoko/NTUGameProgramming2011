@@ -1,12 +1,12 @@
 #include "Donzo.h"
 #include "function.h"
-const float Donzo::ATTACK_RATE = 0.1f;
+const float Donzo::ATTACK_RATE = 0.01f;
 Donzo::Donzo( WORLDid gID, SCENEid sID )
 {
 	FnWorld gw;
 	FnScene scene;
 
-	HP_MAX = 900;
+	HP_MAX = 9000;
 	HP = HP_MAX;
 
 	pos_begin[0]=3469.0;
