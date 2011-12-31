@@ -2,7 +2,6 @@
 #include "function.h"
 #include "OurActor.h"
 #include "OurAction.h"
-extern float debug[6];
 
 const float Robber02::ATTACK_RATE = 0.1f;
 Robber02::Robber02( WORLDid gID, SCENEid sID )

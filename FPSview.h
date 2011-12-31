@@ -6,8 +6,8 @@ class FPSview
 		float pos_begin[3];
 		int oldX, oldY;
 		static FPSview *class_now;
-		VIEWPORTid vID;
 	public:
+		VIEWPORTid vID;
 		OBJECTid cFPS;
 		OBJECTid FPSstandID;
 		FPSview( WORLDid , SCENEid ,OBJECTid , int , int , int , int );
