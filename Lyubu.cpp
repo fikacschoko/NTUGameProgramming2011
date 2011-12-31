@@ -8,6 +8,9 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	FnWorld gw;
 	FnScene scene;
 
+	HP_MAX = 1000;
+	HP = HP_MAX;
+
 	pos_begin[0]=3569.0;
 	pos_begin[1]=-3208.0;
 	pos_begin[2]=1000.0f;

@@ -53,24 +53,51 @@ Robber02::Robber02( WORLDid gID, SCENEid sID )
 	//Attack
 	ourAttack1Action = new OurAction();
 	ourAttack1Action->actID = actor.GetBodyAction(NULL, "NormalAttack1");
+	ourAttack1Action->isAttack = true;
 	ourAttack1Action->frames_num = 0;
 	ourAttack1Action->play_speed = 1;
 	ourAttack1Action->priority = 5;
 	ourAttack1Action->type.value = Action_type::ACTION_ATTACK();
+	ourAttack1Action->numOfKeyFrames = 1;
+	ourAttack1Action->keyFrames = new OurFrame*[1];
+	ourAttack1Action->keyFrames[0] = new OurFrame;
+	ourAttack1Action->keyFrames[0]->frameNO = 17;
+	ourAttack1Action->keyFrames[0]->start_angle = 340;
+	ourAttack1Action->keyFrames[0]->plus_angle = 40;
+	ourAttack1Action->keyFrames[0]->valid_dis = 170;
+	ourAttack1Action->keyFrames[0]->damage_pt = 20;
 
 	ourAttack2Action = new OurAction();
 	ourAttack2Action->actID = actor.GetBodyAction(NULL, "NormalAttack2");
+	ourAttack2Action->isAttack = true;
 	ourAttack2Action->frames_num = 0;
 	ourAttack2Action->play_speed = 1;
 	ourAttack2Action->priority = 6;
 	ourAttack2Action->type.value = Action_type::ACTION_ATTACK();
+	ourAttack2Action->numOfKeyFrames = 1;
+	ourAttack2Action->keyFrames = new OurFrame*[1];
+	ourAttack2Action->keyFrames[0] = new OurFrame;
+	ourAttack2Action->keyFrames[0]->frameNO = 8;
+	ourAttack2Action->keyFrames[0]->start_angle = 290;
+	ourAttack2Action->keyFrames[0]->plus_angle = 250;
+	ourAttack2Action->keyFrames[0]->valid_dis = 160;
+	ourAttack2Action->keyFrames[0]->damage_pt = 10;
 
-	ourHAttackAction = new OurAction();
-	ourHAttackAction->actID = actor.GetBodyAction(NULL, "HeavyAttack1");
-	ourHAttackAction->frames_num = 0;
-	ourHAttackAction->play_speed = 1;
-	ourHAttackAction->priority = 7;
-	ourHAttackAction->type.value = Action_type::ACTION_ATTACK();
+	ourHeavyAttackAction = new OurAction();
+	ourHeavyAttackAction->actID = actor.GetBodyAction(NULL, "HeavyAttack1");
+	ourHeavyAttackAction->isAttack = true;
+	ourHeavyAttackAction->frames_num = 0;
+	ourHeavyAttackAction->play_speed = 1;
+	ourHeavyAttackAction->priority = ourAttack1Action->priority + 10;
+	ourHeavyAttackAction->type.value = Action_type::ACTION_ATTACK();
+	ourHeavyAttackAction->numOfKeyFrames = 1;
+	ourHeavyAttackAction->keyFrames = new OurFrame*[1];
+	ourHeavyAttackAction->keyFrames[0] = new OurFrame;
+	ourHeavyAttackAction->keyFrames[0]->frameNO = 16;
+	ourHeavyAttackAction->keyFrames[0]->start_angle = 330;
+	ourHeavyAttackAction->keyFrames[0]->plus_angle = 120;
+	ourHeavyAttackAction->keyFrames[0]->valid_dis = 130;
+	ourHeavyAttackAction->keyFrames[0]->damage_pt = 10;
 	
 	//Damage1
 	ourDamage1Action = new OurAction();
@@ -147,7 +174,7 @@ bool Robber02::attackAgent(ACTORid enemyID)
 			else if(r < 66)
 				sendAction(this->ourAttack2Action);
 			else
-				sendAction(this->ourHAttackAction);
+				sendAction(this->ourHeavyAttackAction);
 
 			return true;
 		}

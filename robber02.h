@@ -17,12 +17,12 @@ class Robber02 : public OurEnemyActor{
 	public:
 		//var
 		float pos_begin[3];
-		OurAction *ourAttack1Action,
-			*ourAttack2Action,
-			*ourHAttackAction,
-			*ourDamage1Action, 
-			*ourDamage2Action,
-			*ourDieAction;
+		OurAction	*ourAttack1Action,
+					*ourAttack2Action,
+					*ourDamage1Action, 
+					*ourDamage2Action,
+					*ourHeavyAttackAction,
+					*ourDieAction;
 
 		//method
 		Robber02( WORLDid , SCENEid );

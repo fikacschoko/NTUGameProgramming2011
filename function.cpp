@@ -118,7 +118,12 @@ float twoObjectAngle(  OBJECTid centerID , OBJECTid targetID ){
 	dot = cenDir[0] * cen_tar[0] + cenDir[1] * cen_tar[1];
 	absA = sqrt(cenDir[0] * cenDir[0] + cenDir[1]* cenDir[1]);
 	absB = sqrt(cen_tar[0] * cen_tar[0] + cen_tar[1]* cen_tar[1]);
-	angle = acos( dot/(absA*absB) )*180/M_PI;
+	float temp;
+	if(dot/(absA*absB) > 1)
+		temp = 1;
+	else
+		temp = dot/(absA*absB);
+	angle = acos(temp)*180/M_PI;
 
 	cross = cenDir[0] * cen_tar[1] - cenDir[1] * cen_tar[0];
 	if( cross < 0 )
