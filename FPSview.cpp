@@ -1,6 +1,6 @@
 #include "FPSview.h"
 #include "TheFlyWin32.h"
-
+extern float debug[6];
 FPSview* FPSview::class_now=NULL;
 
 FPSview::FPSview( WORLDid gID, SCENEid sID,OBJECTid terrainID, int view_x_pos, int view_y_pos, int width, int height )
@@ -37,7 +37,7 @@ FPSview::FPSview( WORLDid gID, SCENEid sID,OBJECTid terrainID, int view_x_pos, i
 	camera.Translate( 0, 0, 0, GLOBAL );
 	camera.Rotate(X_AXIS, 90.0f, REPLACE);
 	camera.Rotate(Y_AXIS, 180.0f, LOCAL);
-
+	camera.SetFov(100);
 }
 void FPSview::move()
 {
@@ -60,6 +60,11 @@ void FPSview::move()
 		//model.Translate(+20, 0, 0, LOCAL);
 		model.MoveRight(+20,TRUE,false,100);
 	}
+	float pos[3];
+	model.GetPosition(pos);
+	debug[0] = pos[0];
+	debug[1] = pos[1];
+	debug[2] = pos[2];
 }
 
 

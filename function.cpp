@@ -2,8 +2,6 @@
 #include "TheFlyWin32.h"
 #define M_PI 3.14159265
 
-extern float debug[6];
-
 bool actorChangePose( ACTORid man, ACTIONid act )
 {
 	FnActor actor;
@@ -22,9 +20,6 @@ bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame, float ang
 	defender.Object( defenderID );
 	//float angle = twoObjectAngle( attacker.GetBaseObject(), defender.GetBaseObject() );
 	float dis = twoObjectDis( attacker.GetBaseObject(), defender.GetBaseObject() );
-	debug[0] = angle;
-	debug[1] = dis;
-	//debug[2] = cross;
 	
 	if( dis <= frame.valid_dis )
 	{

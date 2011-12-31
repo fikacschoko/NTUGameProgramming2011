@@ -2,7 +2,6 @@
 #include "function.h"
 #include "AllData.h"
 
-extern float debug[4];
 Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 {
 	FnWorld gw;
@@ -336,9 +335,6 @@ void Lyubu::Rotate(int degree, float cameraPos[])
 	actObj.Object(actor.GetBaseObject());
 	actObj.SetMatrix(M, GLOBAL);
 	actor.GetPosition(actPos);
-	debug[0] = actPos[0];
-	debug[1] = actPos[1];
-	debug[2] = actPos[2];
 }
 
 void Lyubu::damaged( int attack_pt, ACTORid attacker, float angle )
