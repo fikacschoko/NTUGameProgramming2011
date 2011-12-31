@@ -3,7 +3,7 @@
 #include "OurActor.h"
 #include "OurAction.h"
 
-const float Robber02::ATTACK_RATE = 0.1f;
+const float Robber02::ATTACK_RATE = 0.01f;
 Robber02::Robber02( WORLDid gID, SCENEid sID )
 {
 	FnWorld gw;
