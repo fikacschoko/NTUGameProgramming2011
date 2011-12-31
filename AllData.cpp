@@ -18,6 +18,7 @@ AUDIOid AllAudio::se_select = 0;
 
 //FX
 char* AllFx::Attack01 = "Attack01";
+char* AllFx::orz = "orz";
 WORLDid AllFx::gID = 0;
 
 eF3DFX* AllFx::getFX(char*filename, SCENEid sID){
@@ -72,8 +73,8 @@ void FXcenter::playAllFX( float skip )
 			if( !beOK )
 			{
 				delete queue[i];
-				queue[i] = queue[queue_end];
-				queue[queue_end] = NULL;
+				queue[i] = queue[queue_end-1];
+				queue[queue_end-1] = NULL;
 				queue_end--;
 				i--;
 			}

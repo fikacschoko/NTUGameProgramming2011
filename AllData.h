@@ -30,7 +30,7 @@ public:
 	static WORLDid gID;
 	static eF3DFX* getFX(char *filename, SCENEid sid);
 	static char* Attack01;
-	
+	static char* orz;
 private:
 	
 };
