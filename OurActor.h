@@ -7,6 +7,7 @@ public:
 	//var
 	FnActor actor;
 	ACTORid aID;
+	int HP_MAX;
 	int HP;
 	
 	//method
