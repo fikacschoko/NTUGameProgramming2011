@@ -1,7 +1,9 @@
 #include "function.h"
 #include "TheFlyWin32.h"
 #define M_PI 3.14159265
-
+#define CLOSE_ENOUGH 100
+#define CLOSE_START_ANGLE 310
+#define CLOSE_PLUS_ANGLE 100
 bool actorChangePose( ACTORid man, ACTIONid act )
 {
 	FnActor actor;
@@ -23,9 +25,12 @@ bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame, float ang
 	
 	if( dis <= frame.valid_dis )
 	{
-		
 		if( frame.start_angle + frame.plus_angle <= 360 )
 		{
+			if( dis <= CLOSE_ENOUGH && angle <= CLOSE_START_ANGLE && angle >= CLOSE_PLUS_ANGLE)
+			{
+				return true;
+			}
 			if(angle <= frame.start_angle + frame.plus_angle && angle >= frame.start_angle )
 			{
 
@@ -36,6 +41,10 @@ bool beenHit( ACTORid attackerID , ACTORid defenderID, OurFrame frame, float ang
 		}
 		else
 		{
+			if( dis <= CLOSE_ENOUGH && (angle >= CLOSE_START_ANGLE || angle <= (CLOSE_START_ANGLE + CLOSE_PLUS_ANGLE)-360) )
+			{
+				return true;
+			}
 			if( angle >= frame.start_angle || angle <= (frame.start_angle + frame.plus_angle)-360 )
 			{
 

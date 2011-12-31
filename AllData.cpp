@@ -101,7 +101,7 @@ void loadAll( WORLDid gID )
 	FnWorld gw;
 	FnAudio audio;
 	gw.Object(gID);
-	gw.SetAudioPath("Data\\Audio");
+	gw.SetAudioPath("Data\\NTU4\\Audio");
 
 	AllAudio::s01_pose05 = gw.CreateAudio();
 	audio.Object(AllAudio::s01_pose05);

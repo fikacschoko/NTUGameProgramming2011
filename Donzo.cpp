@@ -6,7 +6,7 @@ Donzo::Donzo( WORLDid gID, SCENEid sID )
 	FnWorld gw;
 	FnScene scene;
 
-	HP_MAX = 900;
+	HP_MAX = 9000;
 	HP = HP_MAX;
 
 	pos_begin[0]=3469.0;
@@ -121,7 +121,7 @@ Donzo::Donzo( WORLDid gID, SCENEid sID )
 	ourDamageLAction = new OurAction();
 	ourDamageLAction->actID = actor.GetBodyAction(NULL, "DamageL");
 	ourDamageLAction->frames_num = 0;
-	ourDamageLAction->play_speed = 1;
+	ourDamageLAction->play_speed = 1.5;
 	ourDamageLAction->priority = 100;
 	ourDamageLAction->type.value = DonzoAction::ACTION_DAMAGED();
 	//fx
@@ -135,7 +135,7 @@ Donzo::Donzo( WORLDid gID, SCENEid sID )
 	ourDamageHAction = new OurAction();
 	ourDamageHAction->actID = actor.GetBodyAction(NULL, "DamageH");
 	ourDamageHAction->frames_num = 0;
-	ourDamageHAction->play_speed = 1;
+	ourDamageHAction->play_speed = 1.5;
 	ourDamageHAction->priority = 100;
 	ourDamageHAction->type.value = DonzoAction::ACTION_DAMAGED();
 	//fx
