@@ -13,10 +13,6 @@ class DonzoAction : public Action_type
 };
 
 class Donzo : public OurEnemyActor{
-	private:
-		WORLDid gID;
-		SCENEid sID;
-
 	public:
 		//var
 		//FnActor actor;

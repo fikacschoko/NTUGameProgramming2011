@@ -7,6 +7,7 @@ OurAction::OurAction()
 	this->keyFrames = 0;
 	this->isAttack = false;
 	this->audioFrames = 0;
+	this->numOfFxFrames = 0;
 	//this->type = NULL;
 }
 

@@ -82,7 +82,7 @@ void Camera3rd::SetPosition(float pos[3], ACTIONid actorID)
 			cy=disBtwActFro+disBtwFroCen,
 			cz=disBtwCenHig; 
 
-	float lookpos[]={0,0,80}; 
+	static float lookpos[]={0,0,80}; 
 
 	float x2=-cx+lookpos[0], y2=-cy+lookpos[1], z2=-cz+lookpos[2], x3=x2, y3=y2, z3=0;
 	float v1v2=x2*x3+y2*y3+z2*z3;

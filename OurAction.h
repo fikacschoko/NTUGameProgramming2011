@@ -1,6 +1,8 @@
 #ifndef _OURACTION_H_
 #define _OURACTION_H_
 #include "TheFlyWin32.h"
+#include "FyFx.h"
+
 class Action_type
 {
 public:
@@ -27,6 +29,7 @@ public:
 		return strcmp(this->value, value) != 0;
 	}
 };
+
 struct OurFrame{
 	float frameNO;
 	float start_angle;
@@ -38,6 +41,12 @@ struct OurFrame{
 struct OurAudioFrame{
 	float frameNO;
 	AUDIOid audioID;
+};
+
+struct OurFxFrame{
+	float frameNO;
+	char* fxName;
+	eF3DFX *fx;
 };
 
 class OurAction{
@@ -56,6 +65,9 @@ public:
 	//audio frame
 	int numOfAudioFrames;
 	OurAudioFrame **audioFrames;
+	//FX frame
+	int numOfFxFrames;
+	OurFxFrame **fxFrames;
 
 	OurAction();	
 	OurAction(int priority,	float play_speed,	float frames_num,	ACTIONid actID,	char *type);
