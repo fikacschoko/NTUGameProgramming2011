@@ -14,6 +14,9 @@ public:
 	static char*	ACTION_NORMAL_ATTACK2(){	return "LYUBU_NORMAL_ATTACK2"; }
 	static char*	ACTION_NORMAL_ATTACK3(){	return "LYUBU_NORMAL_ATTACK3"; }
 	static char*	ACTION_NORMAL_ATTACK4(){	return "LYUBU_NORMAL_ATTACK4"; }
+	static char*	ACTION_HEAVY_ATTACK1(){	return "LYUBU_HEAVY_ATTACK1"; }
+	static char*	ACTION_HEAVY_ATTACK2(){	return "LYUBU_HEAVY_ATTACK2"; }
+	static char*	ACTION_HEAVY_ATTACK3(){	return "LYUBU_HEAVY_ATTACK3"; }
 };
 
 class Lyubu : public OurActor{
@@ -36,6 +39,13 @@ class Lyubu : public OurActor{
 		OurAction *ourAttack2Action;
 		OurAction *ourAttack3Action;
 		OurAction *ourAttack4Action;
+		OurAction *ourHeavyAttack1Action;
+		OurAction *ourHeavyAttack2Action;
+		OurAction *ourHeavyAttack3Action;
+		OurAction *ourHeavyDamagedAction;
+		OurAction *ourLeftDamagedAction;
+		OurAction *ourRightDamagedAction;
+		OurAction *ourDieAction;
 		float pos_begin[3];
 		float MOVE_SPEED, MOVE_ANGLE;
 		//method
