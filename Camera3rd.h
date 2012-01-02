@@ -11,6 +11,7 @@ class Camera3rd
 		float fronterPos[3], centerPos[3], higherPos[3];
 	public:
 		FnObject fronter, center, higher;
+		FnViewport vp;
 
 		WORLDid gID;
 		SCENEid sID;

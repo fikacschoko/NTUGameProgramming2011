@@ -4,10 +4,9 @@
 
 Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 {
-	FnWorld gw;
 	FnScene scene;
 
-	HP_MAX = 10000;
+	HP_MAX = 1000;
 	HP = HP_MAX;
 
 	pos_begin[0]=3569.0;
@@ -20,6 +19,39 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 
 	gw.Object(gID);
 	scene.Object(sID);
+
+	//2D
+	FnSprite sp;
+	FnScene scene2D;
+	gw.SetTexturePath("Data");
+
+	s2D = gw.CreateScene(1);
+	scene2D.Object(s2D);
+	scene2D.SetSpriteWorldSize(800, 600);
+		//face img
+	face_img = scene2D.CreateSprite();
+	sp.Object(face_img);
+	sp.SetRectArea(NULL, 200, 200, NULL, "597_2", 0, TRUE, 0, 0, 0);   // load an image & resize it
+	sp.SetRectPosition(10, 10, 0);   // put at (200, 200) position
+		//lifebar img
+	lifebar_x = 180;
+	lifebar_y = 50;
+	lifebar_length = 500;
+	lifebar_height = 25;
+
+	lifebar_frameID = scene2D.CreateSprite();
+	sp.Object(lifebar_frameID);
+	sp.SetRectArea(NULL, lifebar_length, lifebar_height, NULL, "lifebar2", 0, TRUE, 0, 0, 0);
+	sp.SetRectPosition(lifebar_x, lifebar_y, 0);
+
+	lifebarID = scene2D.CreateSprite();
+	sp.Object(lifebarID);
+	sp.SetRectArea(NULL, lifebar_length, lifebar_height, NULL, "lifebar1", 0, TRUE, 0, 0, 0);
+	sp.SetRectPosition(lifebar_x, lifebar_y, 0);
+
+	lifebar.Object(lifebarID);
+	//2D
+
 
 	gw.SetObjectPath("Data\\NTU4\\Characters");
 	gw.SetTexturePath("Data\\NTU4\\Characters");
@@ -343,6 +375,7 @@ void Lyubu::damaged( int attack_pt, ACTORid attacker, float angle )
 	if( HP <= 0 )
 	{
 		sendAction(ourDieAction);
+		HP = 0;
 	}
 	else if(attack_pt > 100)
 	{
@@ -354,5 +387,11 @@ void Lyubu::damaged( int attack_pt, ACTORid attacker, float angle )
 			sendAction(ourLeftDamagedAction);
 		else
 			sendAction(ourRightDamagedAction);
+	}
+
+	//lifebar
+	{
+		gw.SetTexturePath("Data");
+		lifebar.SetRectArea(NULL, lifebar_length*HP/HP_MAX, lifebar_height, NULL, "lifebar1", 0, TRUE, 0, 0, 0);  
 	}
 }

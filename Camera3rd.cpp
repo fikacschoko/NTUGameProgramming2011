@@ -8,7 +8,6 @@ Camera3rd::Camera3rd(WORLDid gID, SCENEid sID, OBJECTid terrainID, Lyubu *lyubu)
 	FnWorld gw;
 	FnScene scene;
 	FnCamera camera;
-	FnViewport vp;
 
 	//initial
 	gw.Object(gID);
@@ -340,7 +339,6 @@ void Camera3rd::movement()
 
 void Camera3rd::render()
 {
-	FnViewport vp;
 	vp.Object(vID);
 	vp.Render(cameraID, TRUE, TRUE);
 }

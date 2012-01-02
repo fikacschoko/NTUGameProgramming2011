@@ -31,6 +31,7 @@ class Lyubu : public OurActor{
 
 		void dealFlag();
 	public:
+		FnWorld gw;
 		//the fly
 		//FnActor actor;
 		//vars
@@ -53,5 +54,12 @@ class Lyubu : public OurActor{
 		void damaged(int , ACTORid , float );
 		void dealKey();
 		void Rotate(int degree, float cameraPos[]);
+
+		//2D
+		FnSprite lifebar;
+		int lifebar_x, lifebar_y;
+		float lifebar_length, lifebar_height;
+		OBJECTid lifebar_frameID, lifebarID, face_img;
+		SCENEid s2D;
 };
 #endif
