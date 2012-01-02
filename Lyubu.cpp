@@ -225,7 +225,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourHeavyAttack1Action->keyFrames[1]->plus_angle = 80;
 	ourHeavyAttack1Action->keyFrames[1]->valid_dis = 260;
 	ourHeavyAttack1Action->keyFrames[1]->damage_pt = 80;
-
+/*
 	ourHeavyAttack2Action = new OurAction();
 	ourHeavyAttack2Action->actID = actor.GetBodyAction(NULL, "HeavyAttack2");
 	ourHeavyAttack2Action->isAttack = true;
@@ -243,6 +243,31 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourHeavyAttack2Action->keyFrames[0]->plus_angle = 180;
 	ourHeavyAttack2Action->keyFrames[0]->valid_dis = 220;
 	ourHeavyAttack2Action->keyFrames[0]->damage_pt = 60;
+*/
+	
+	ourHeavyAttack2Action = new OurAction();
+	ourHeavyAttack2Action->actID = actor.GetBodyAction(NULL, "HeavyAttack2");
+	ourHeavyAttack2Action->isAttack = true;
+	ourHeavyAttack2Action->frames_num = 72;
+	ourHeavyAttack2Action->play_speed = 1.2;
+	ourHeavyAttack2Action->priority = ourAttack2Action->priority + 10;
+	ourHeavyAttack2Action->type.value = LyubuAction::ACTION_HEAVY_ATTACK2();
+	ourHeavyAttack2Action->combo_able_frame_start = 22;
+	ourHeavyAttack2Action->combo_able_frame_end = 40;
+	ourHeavyAttack2Action->numOfKeyFrames = 2;
+	ourHeavyAttack2Action->keyFrames = new OurFrame*[2];
+	ourHeavyAttack2Action->keyFrames[0] = new OurFrame;
+	ourHeavyAttack2Action->keyFrames[0]->frameNO = 22;
+	ourHeavyAttack2Action->keyFrames[0]->start_angle = 0;
+	ourHeavyAttack2Action->keyFrames[0]->plus_angle = 180;
+	ourHeavyAttack2Action->keyFrames[0]->valid_dis = 270;
+	ourHeavyAttack2Action->keyFrames[0]->damage_pt = 60;
+	ourHeavyAttack2Action->keyFrames[1] = new OurFrame;
+	ourHeavyAttack2Action->keyFrames[1]->frameNO = 19;
+	ourHeavyAttack2Action->keyFrames[1]->start_angle = 180;
+	ourHeavyAttack2Action->keyFrames[1]->plus_angle = 180;
+	ourHeavyAttack2Action->keyFrames[1]->valid_dis = 270;
+	ourHeavyAttack2Action->keyFrames[1]->damage_pt = 60;
 
 	ourHeavyAttack3Action = new OurAction();
 	ourHeavyAttack3Action->actID = actor.GetBodyAction(NULL, "HeavyAttack3");
@@ -257,7 +282,7 @@ Lyubu::Lyubu( WORLDid gID, SCENEid sID )
 	ourHeavyAttack3Action->keyFrames = new OurFrame*[1];
 	ourHeavyAttack3Action->keyFrames[0] = new OurFrame;
 	ourHeavyAttack3Action->keyFrames[0]->frameNO = 24;
-	ourHeavyAttack3Action->keyFrames[0]->start_angle = 30;
+	ourHeavyAttack3Action->keyFrames[0]->start_angle = 270;
 	ourHeavyAttack3Action->keyFrames[0]->plus_angle = 180;
 	ourHeavyAttack3Action->keyFrames[0]->valid_dis = 190;
 	ourHeavyAttack3Action->keyFrames[0]->damage_pt = 60;
